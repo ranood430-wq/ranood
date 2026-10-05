@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Ranood! 💕 | For My Princess</title>
+    <link rel="stylesheet" href="shared-nav.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #fff5f8 0%, #ffe4ec 45%, #ffd1dc 75%, #fff0f5 100%);
+            min-height: 100vh;
+            color: #4a2c3a;
+            position: relative;
+            overflow-x: hidden;
+            padding-bottom: 70px;
+        }
+
+        .container {
+            position: relative;
+            z-index: 5;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        /* Birthday Header */
+        .birthday-header {
+            text-align: center;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 50%, #ff1493 100%);
+            border-radius: 36px;
+            padding: 60px 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 18px 50px rgba(255, 105, 180, 0.35);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .birthday-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .birthday-header .subtitle {
+            font-size: 1.4rem;
+            font-style: italic;
+            opacity: 0.95;
+            margin-bottom: 25px;
+        }
+
+        .personal-message-box {
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 24px;
+            padding: 30px 25px;
+            max-width: 880px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            line-height: 2;
+            text-align: center;
+            font-style: italic;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(255, 182, 193, 0.55);
+            border-radius: 32px;
+            padding: 40px 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 45px rgba(255, 105, 180, 0.16);
+            backdrop-filter: blur(15px);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #d81b60;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* Gallery Grid */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .photo-card {
+            background: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.16);
+            border: 2px solid rgba(255, 182, 193, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 45px rgba(255, 105, 180, 0.28);
+            border-color: #ff69b4;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-caption {
+            padding: 18px;
+            text-align: center;
+            color: #d81b60;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: #fffbfe;
+        }
+
+        /* Video Section */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.16);
+            border: 2px solid rgba(255, 182, 193, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff69b4;
+        }
+
+        .video-card video {
+            width: 100%;
+            border-radius: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            display: block;
+            background: #000;
+            max-height: 480px;
+            object-fit: contain;
+        }
+
+        .video-message {
+            background: #fff5f8;
+            border: 1.5px solid #ffb6c1;
+            padding: 18px 20px;
+            border-radius: 16px;
+            color: #d81b60;
+            font-size: 1.05rem;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* Princess Feature Photo */
+        .special-photo {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .special-photo img {
+            max-width: 100%;
+            max-height: 600px;
+            width: auto;
+            border-radius: 28px;
+            box-shadow: 0 16px 50px rgba(255, 105, 180, 0.25);
+            border: 4px solid rgba(255, 182, 193, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .special-photo img:hover {
+            transform: scale(1.02);
+        }
+
+        .special-caption {
+            margin-top: 22px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            color: #d81b60;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #d81b60;
+            font-size: 1.25rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 28px;
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.15);
+            margin-top: 10px;
+        }
+
+        .footer p {
+            margin: 6px 0;
+        }
+
+        .footer .heart {
+            display: inline-block;
+            color: #ff1493;
+            animation: pulseFooter 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseFooter {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @media (max-width: 768px) {
+            .birthday-header h1 {
+                font-size: 2.3rem;
+            }
+            .birthday-header .subtitle {
+                font-size: 1.15rem;
+            }
+            .personal-message-box {
+                font-size: 1rem;
+                padding: 20px 15px;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .photo-gallery, .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <div class="site-nav-container">
+        <nav class="site-navbar">
+            <a href="birthday.html" class="nav-brand">
+                <span class="brand-icon">💕</span>
+                <span>For Ranood</span>
+            </a>
+
+            <button class="mobile-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
+
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="birthday.html" class="nav-link active">
+                        <span class="icon">🎂</span> Ur Birthday
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="music.html" class="nav-link">
+                        <span class="icon">🎵</span> Music
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="notes.html" class="nav-link">
+                        <span class="icon">💌</span> Love Notes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="memories.html" class="nav-link">
+                        <span class="icon">📸</span> Memories
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-btn" onclick="RanoodAuth.lock()" title="Re-lock with secret code">
+                    🔒 Lock
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <!-- HEADER SECTION WITH PERSONAL MESSAGE -->
+        <header class="birthday-header">
+            <h1>🎂 Happy Birthday Ranood! 🎂</h1>
+            <p class="subtitle">The most beautiful soul in this world 💕</p>
+            <div class="personal-message-box">
+                ranood agmal w a7la sha5s fe 7ayaty msh mot5yla ana bahebek 2ad eh awl 3eed melad lena sawa kan nefsy ab2a ma3aky awy elyoum da bs lel asaf ma2dertesh w insha2lah el gy aktar bekteer 3ayz ashkorek 3la kol 7aga bgd 3omry ma hala2y 7ob w ehtmam zy eletny btedhooly w mahma shakartek msh hyb2a kfaya enty a7la 7aga 7asaletly yarab nefdal sawa l7d a5er el3omr w ashoofek ashtar doctora fel denya w tft7y elbrand bta3ek 3shn tesrefy 3lena w yarab 😂 tb2a sana sa3eeda 3leky w t722y el nefsek fe bahebek awy awy awy rabna y5liki leya de 7aga baseeta awy yarab tfara7ek💖💖
+            </div>
+        </header>
+
+        <!-- SECTION 1: OUR MEMORIES TOGETHER -->
+        <section class="content-section">
+            <h2 class="section-title">💕 Our Memories Together 💕</h2>
+            <div class="photo-gallery">
+                <div class="photo-card">
+                    <img src="WhatsApp Image 2026-06-01 at 17.10.21.jpeg" alt="Us together" loading="lazy">
+                    <div class="photo-caption">Every moment with you is precious 💕</div>
+                </div>
+                <div class="photo-card">
+                    <img src="WhatsApp Image 2026-06-01 at 17.10.22.jpeg" alt="Us together" loading="lazy">
+                    <div class="photo-caption">You make my world brighter 🌟</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: MESSAGES FROM MY HEART -->
+        <section class="content-section">
+            <h2 class="section-title">💌 Messages From My Heart 💌</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="WhatsApp Video 2026-06-01 at 17.10.19.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-message">
+                        "de7ketek de a7la 7aga shoftaha fe 7ayaty" 😊💕
+                    </div>
+                </div>
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="WhatsApp Video 2026-06-01 at 17.10.23.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-message">
+                        "eltaree2a el shoft feeha elfar7a fe 3eneeky wla el7ob el fe 3eneeky w enty betboseely bt5leeny nefsy afara7ek 3latool w b3raf eny aktar sha5s ma7zooz fe eldenya 3shn m3aya wa7da zayek" 💖
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE BIRTHDAY PRINCESS -->
+        <section class="content-section">
+            <h2 class="section-title">👸 The Birthday Princess 👸</h2>
+            <div class="special-photo">
+                <img src="WhatsApp Image 2026-06-01 at 17.10.24.jpeg" alt="Beautiful Renad" loading="lazy">
+                <div class="special-caption">
+                    The most beautiful girl inside and out 💕
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>Made with <span class="heart">❤️</span> for you, Renad</p>
+            <p>May all your dreams come true! 🌟</p>
+        </footer>
+
+    </div>
+
+    <!-- Smooth Click Confetti Burst -->
+    <script>
+        document.body.addEventListener('click', (e) => {
+            if (e.target.closest('a') || e.target.closest('button') || e.target.closest('video')) return;
+            createConfettiBurst(e.clientX, e.clientY);
+        });
+
+        function createConfettiBurst(x, y) {
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                const colors = ['#ff69b4', '#ffb6c1', '#fff0f5', '#ff1493', '#ffd700'];
+                confetti.style.position = 'fixed';
+                confetti.style.left = x + 'px';
+                confetti.style.top = y + 'px';
+                confetti.style.width = '8px';
+                confetti.style.height = '8px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 180 + 100;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity - 150;
+
+                confetti.animate([
+                    { transform: 'translate(0, 0)', opacity: 1 },
+                    { transform: `translate(${vx}px, ${vy}px)`, opacity: 0 }
+                ], {
+                    duration: 1000,
+                    easing: 'ease-out'
+                }).onfinish = () => confetti.remove();
+
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+    <script src="shared-nav.js"></script>
+</body>
+</html>

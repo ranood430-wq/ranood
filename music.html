@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Soundtrack 🎵💕 | For My Ranood</title>
+    <link rel="stylesheet" href="shared-nav.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #fff5f8 0%, #ffe4ec 45%, #ffd1dc 75%, #fff0f5 100%);
+            min-height: 100vh;
+            color: #4a2c3a;
+            position: relative;
+            overflow-x: hidden;
+            padding-bottom: 60px;
+        }
+
+        /* Ambient floating musical notes */
+        .music-notes-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .music-note {
+            position: absolute;
+            bottom: -40px;
+            font-size: 26px;
+            color: #ff69b4;
+            opacity: 0.5;
+            animation: floatMusic 12s linear infinite;
+        }
+
+        @keyframes floatMusic {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.6);
+                opacity: 0;
+            }
+            15% { opacity: 0.7; }
+            85% { opacity: 0.7; }
+            100% {
+                transform: translateY(-110vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 5;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.9));
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            border-radius: 36px;
+            padding: 45px 30px;
+            margin-bottom: 45px;
+            box-shadow: 0 15px 45px rgba(255, 105, 180, 0.22);
+            backdrop-filter: blur(15px);
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #d81b60;
+            margin-bottom: 12px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #7a4d64;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Music Cards Stacked Under Each Other */
+        .songs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .song-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 182, 193, 0.55);
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.2);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .song-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 65px rgba(255, 105, 180, 0.35);
+            border-color: #ff69b4;
+        }
+
+        /* Vinyl Banner & Card Layout */
+        .song-banner {
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .vinyl-record {
+            width: 75px;
+            height: 75px;
+            background: radial-gradient(circle, #ff69b4 20%, #2b1823 21%, #1f0f18 40%, #ff1493 42%, #2b1823 44%, #111 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            animation: spinRecord 6s linear infinite;
+            flex-shrink: 0;
+            border: 2px solid #ffffff;
+        }
+
+        .vinyl-center {
+            width: 26px;
+            height: 26px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        @keyframes spinRecord {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .song-info {
+            flex: 1;
+        }
+
+        .song-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            color: #d81b60;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .song-artist {
+            font-size: 1.15rem;
+            color: #ff1493;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            margin-top: 4px;
+        }
+
+        .youtube-play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .youtube-play-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+            background: linear-gradient(135deg, #d81b60 0%, #ff1493 100%);
+        }
+
+        @media (max-width: 768px) {
+            .songs-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <div class="site-nav-container">
+        <nav class="site-navbar">
+            <a href="birthday.html" class="nav-brand">
+                <span class="brand-icon">💕</span>
+                <span>For Ranood</span>
+            </a>
+
+            <button class="mobile-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
+
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="birthday.html" class="nav-link">
+                        <span class="icon">🎂</span> Ur Birthday
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="music.html" class="nav-link active">
+                        <span class="icon">🎵</span> Music
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="notes.html" class="nav-link">
+                        <span class="icon">💌</span> Love Notes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="memories.html" class="nav-link">
+                        <span class="icon">📸</span> Memories
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-btn" onclick="RanoodAuth.lock()" title="Re-lock with secret code">
+                    🔒 Lock
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Floating Musical Notes -->
+    <div class="music-notes-container" id="musicNotes"></div>
+
+    <div class="main-container">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-badge">🎵 Special Playlist for Ranood 💕</div>
+            <h1 class="page-title">Music</h1>
+        </header>
+
+        <!-- Song Cards Stacked Under Each Other -->
+        <div class="songs-grid">
+
+            <!-- SONG 1: LOVE SONG BY ADELE -->
+            <div class="song-card">
+                <div class="song-banner">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div class="vinyl-record">
+                            <div class="vinyl-center">💖</div>
+                        </div>
+                        <div class="song-info">
+                            <h2 class="song-title">Love Song 💕</h2>
+                            <div class="song-artist">by Adele</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=0wPhbmeNSOs&list=RD0wPhbmeNSOs&start_radio=1" target="_blank" rel="noopener noreferrer" class="youtube-play-btn">
+                        <span>▶ Listen on YouTube</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SONG 2: FENAK BY TOMMY GUN -->
+            <div class="song-card">
+                <div class="song-banner">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div class="vinyl-record" style="animation-duration: 5s;">
+                            <div class="vinyl-center">🌸</div>
+                        </div>
+                        <div class="song-info">
+                            <h2 class="song-title">Fenak 💫</h2>
+                            <div class="song-artist">by Tommy Gun</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=2yhUm7-cpWc&list=RD2yhUm7-cpWc&start_radio=1" target="_blank" rel="noopener noreferrer" class="youtube-play-btn">
+                        <span>▶ Listen on YouTube</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="shared-nav.js"></script>
+    <script>
+        // Floating musical symbols
+        const notesContainer = document.getElementById('musicNotes');
+        const symbols = ['♪', '♫', '♬', '♩', '💕', '✨', '💖', '🌸'];
+
+        function addFloatingNote() {
+            const note = document.createElement('div');
+            note.className = 'music-note';
+            note.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            note.style.left = Math.random() * 100 + '%';
+            note.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            note.style.animationDuration = (Math.random() * 6 + 8) + 's';
+            notesContainer.appendChild(note);
+
+            setTimeout(() => {
+                note.remove();
+            }, 14000);
+        }
+
+        setInterval(addFloatingNote, 1200);
+        for (let i = 0; i < 8; i++) {
+            addFloatingNote();
+        }
+    </script>
+</body>
+</html>

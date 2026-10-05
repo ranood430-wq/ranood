@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Entrance 💕 | For My Ranood</title>
+    <link rel="stylesheet" href="shared-nav.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #fff5f8 0%, #ffe4ec 45%, #ffd1dc 75%, #fff0f5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Ambient Glowing Background Orbs */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+            animation: orbFloat 10s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 350px;
+            height: 350px;
+            background: #ffb6c1;
+            top: 5%;
+            left: 10%;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #ff69b4;
+            bottom: 10%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-40px) scale(1.1); }
+        }
+
+        /* Main Container Card */
+        .portal-card {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 182, 193, 0.6);
+            border-radius: 36px;
+            padding: 45px 35px;
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(255, 105, 180, 0.28),
+                        0 0 35px rgba(255, 255, 255, 0.9),
+                        inset 0 0 25px rgba(255, 240, 245, 0.6);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: cardAppear 1s ease-out;
+        }
+
+        @keyframes cardAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Omegle Logo Badge */
+        .omegle-badge {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            border-radius: 24px;
+            padding: 12px 24px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.18);
+            margin-bottom: 25px;
+            animation: badgeFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes badgeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .omegle-logo {
+            max-height: 52px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.06));
+        }
+
+        .omegle-subtext {
+            font-size: 0.82rem;
+            color: #ff69b4;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        h1.portal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #d81b60;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        p.portal-desc {
+            color: #7a5065;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        /* Password Form */
+        .form-group {
+            position: relative;
+            margin-bottom: 22px;
+            text-align: left;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #8c4e6c;
+            margin-bottom: 8px;
+            margin-left: 6px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            font-size: 1.15rem;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 1px;
+            background: #ffffff;
+            border: 2px solid #ffb6c1;
+            border-radius: 20px;
+            color: #4a2c3a;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.25);
+        }
+
+        .password-input:focus {
+            border-color: #ff1493;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.35);
+            background: #fffbfe;
+        }
+
+        .toggle-visibility {
+            position: absolute;
+            right: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: #ff69b4;
+            padding: 5px;
+            transition: transform 0.2s ease;
+        }
+
+        .toggle-visibility:hover {
+            transform: scale(1.15);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 30px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.55);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .hint-text {
+            margin-top: 18px;
+            font-size: 0.88rem;
+            color: #9c6780;
+            font-style: italic;
+        }
+
+        /* Error Shake Animation */
+        .shake {
+            animation: shakeAnim 0.5s ease-in-out;
+        }
+
+        @keyframes shakeAnim {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-12px); }
+            40% { transform: translateX(12px); }
+            60% { transform: translateX(-8px); }
+            80% { transform: translateX(8px); }
+        }
+
+        .error-message {
+            color: #e91e63;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 14px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================================
+           SCREEN 2: DO YOU LOVE ME? QUESTION
+           ========================================= */
+        .step-hidden {
+            display: none !important;
+        }
+
+        .question-badge {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: heartPulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .question-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            color: #d81b60;
+            margin-bottom: 12px;
+        }
+
+        .question-sub {
+            color: #8c526f;
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+        }
+
+        .love-arena {
+            position: relative;
+            min-height: 200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px 10px;
+            overflow: visible;
+        }
+
+        .btn-yes {
+            padding: 16px 36px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5),
+                        0 0 20px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 5;
+            animation: pulseYes 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseYes {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5); }
+            50% { transform: scale(1.08); box-shadow: 0 15px 40px rgba(255, 20, 147, 0.7); }
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.15) !important;
+            background: linear-gradient(135deg, #d81b60 0%, #ff1493 100%);
+        }
+
+        /* Runaway NO Button */
+        .btn-no {
+            padding: 14px 28px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            color: #a86c87;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px dashed #ffb6c1;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease;
+            position: relative;
+            z-index: 10;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        /* Success Celebration Modal */
+        .celebration-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(74, 44, 58, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            padding: 20px;
+        }
+
+        .celebration-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .celebration-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fff0f5 100%);
+            border: 3px solid #ff69b4;
+            border-radius: 36px;
+            padding: 40px 30px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 80px rgba(255, 20, 147, 0.5);
+            transform: scale(0.8);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .celebration-modal.active .celebration-card {
+            transform: scale(1);
+        }
+
+        .celebration-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #d81b60;
+            margin: 15px 0 10px 0;
+        }
+
+        .celebration-card p {
+            color: #7a5065;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .proceed-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .proceed-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glowing Background Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+
+    <!-- MAIN PORTAL CARD -->
+    <div class="portal-card" id="portalCard">
+
+        <!-- ==============================================
+             STEP 1: OMEGLE LOGO & SECURITY CODE SCREEN
+             ============================================== -->
+        <div id="stepSecurity">
+            <div class="omegle-badge">
+                <img src="omegle.webp" alt="Omegle Logo" class="omegle-logo">
+                <span class="omegle-subtext">Where our story began... 💬✨</span>
+            </div>
+
+            <h1 class="portal-title">Private Love Vault 💕</h1>
+            <p class="portal-desc">
+                From a random stranger on Omegle to the sweetest person in my entire life. Please enter our secret security code to enter:
+            </p>
+
+            <form id="securityForm" onsubmit="handleSecuritySubmit(event)">
+                <div class="form-group">
+                    <label class="input-label" for="securityCode">Our Secret Password:</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="securityCode" 
+                            class="password-input" 
+                            placeholder="Type the secret code..."
+                            autocomplete="off"
+                            autofocus
+                        >
+                        <button type="button" class="toggle-visibility" onclick="togglePassVisibility()" title="Show/Hide">
+                            👁️
+                        </button>
+                    </div>
+                    <div id="errorMessage" class="error-message">
+                        Oops! That's not the secret password, my love... try again 🥺💕
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span>Unlock My Heart</span> 💖
+                </button>
+            </form>
+
+            <p class="hint-text">
+                Hint: rema... 🔐
+            </p>
+        </div>
+
+        <!-- ==============================================
+             STEP 2: "DO YOU LOVE ME?" QUESTION SCREEN
+             ============================================== -->
+        <div id="stepQuestion" class="step-hidden">
+            <div class="question-badge">🥺💕</div>
+            <h2 class="question-title">One Little Question...</h2>
+            <p class="question-sub">You must answer honestly before we celebrate! 🙈</p>
+
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.3rem; color: #ff1493; margin-bottom: 25px;">
+                Do you love me? 💖
+            </h1>
+
+            <div class="love-arena" id="loveArena">
+                <!-- YES Button -->
+                <button type="button" class="btn-yes" id="yesBtn" onclick="handleYesClick()">
+                    <span>YES! Always & Forever!</span> 🥰
+                </button>
+
+                <!-- NO Button (The Runaway Button) -->
+                <button type="button" class="btn-no" id="noBtn">
+                    No 💔
+                </button>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #a37088; margin-top: 20px; font-style: italic;">
+                (There is only one correct answer in this universe! ✨)
+            </p>
+        </div>
+
+    </div>
+
+    <!-- ==============================================
+         SUCCESS CELEBRATION MODAL
+         ============================================== -->
+    <div class="celebration-modal" id="celebrationModal">
+        <div class="celebration-card">
+            <div style="font-size: 4rem; animation: heartPulse 1.2s infinite;">💍💖🎉</div>
+            <h2>I LOVE YOU SO MUCH MORE!</h2>
+            <p>
+                You are my whole life, my princess, and the sweetest person I've ever met! Welcome to your special world! ✨💕
+            </p>
+            <a href="birthday.html" class="proceed-btn" id="enterSiteBtn">
+                <span>Enter Our World</span> 💕✨
+            </a>
+        </div>
+    </div>
+
+    <script src="shared-nav.js"></script>
+    <script>
+        // Secret code definition
+        const CORRECT_CODE = "rema261812";
+
+        // DOM elements
+        const stepSecurity = document.getElementById('stepSecurity');
+        const stepQuestion = document.getElementById('stepQuestion');
+        const portalCard = document.getElementById('portalCard');
+        const securityCodeInput = document.getElementById('securityCode');
+        const errorMessage = document.getElementById('errorMessage');
+        const noBtn = document.getElementById('noBtn');
+        const loveArena = document.getElementById('loveArena');
+        const celebrationModal = document.getElementById('celebrationModal');
+
+        // Toggle password show/hide
+        function togglePassVisibility() {
+            if (securityCodeInput.type === 'password') {
+                securityCodeInput.type = 'text';
+            } else {
+                securityCodeInput.type = 'password';
+            }
+        }
+
+        // Handle security code submission
+        function handleSecuritySubmit(e) {
+            e.preventDefault();
+            const inputVal = securityCodeInput.value.trim().toLowerCase();
+
+            if (inputVal === CORRECT_CODE.toLowerCase()) {
+                // Correct code!
+                errorMessage.style.display = 'none';
+                triggerMiniConfetti();
+
+                // Smooth card transition to Question step
+                portalCard.style.transform = 'scale(0.95)';
+                portalCard.style.opacity = '0';
+
+                setTimeout(() => {
+                    stepSecurity.classList.add('step-hidden');
+                    stepQuestion.classList.remove('step-hidden');
+                    portalCard.style.maxWidth = '580px';
+                    portalCard.style.transform = 'scale(1)';
+                    portalCard.style.opacity = '1';
+                    setupRunawayButton();
+                }, 400);
+
+            } else {
+                // Wrong code
+                errorMessage.style.display = 'block';
+                portalCard.classList.remove('shake');
+                void portalCard.offsetWidth; // re-trigger animation
+                portalCard.classList.add('shake');
+                securityCodeInput.focus();
+                securityCodeInput.select();
+            }
+        }
+
+        // ==============================================
+        // RUNAWAY "NO" BUTTON LOGIC (IMPOSSIBLE TO CLICK!)
+        // ==============================================
+        const funnyTexts = [
+            "Nope! 😜",
+            "You can't click me! 😂",
+            "Wrong button! 💖",
+            "Try again! 🙈",
+            "You love me too much! 🥰",
+            "Error: 'No' not found! ❌",
+            "Only YES allowed! 💕",
+            "Nice try, princess! 👑",
+            "Click YES already! 💖"
+        ];
+        let textIndex = 0;
+
+        function setupRunawayButton() {
+            // Proximity detection and evasive teleportation
+            const dodge = (e) => {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+                // Change text dynamically
+                noBtn.innerText = funnyTexts[textIndex % funnyTexts.length];
+                textIndex++;
+
+                // Ensure button is positioned absolutely
+                noBtn.style.position = 'fixed';
+                noBtn.style.zIndex = '9999';
+
+                // Calculate random coordinate on screen with safety margin
+                const btnWidth = noBtn.offsetWidth || 120;
+                const btnHeight = noBtn.offsetHeight || 50;
+
+                const maxX = window.innerWidth - btnWidth - 40;
+                const maxY = window.innerHeight - btnHeight - 40;
+
+                let randomX = Math.max(30, Math.floor(Math.random() * maxX));
+                let randomY = Math.max(30, Math.floor(Math.random() * maxY));
+
+                // Also make sure it doesn't land on top of the YES button
+                const yesRect = document.getElementById('yesBtn').getBoundingClientRect();
+                if (
+                    randomX < yesRect.right + 20 &&
+                    randomX + btnWidth > yesRect.left - 20 &&
+                    randomY < yesRect.bottom + 20 &&
+                    randomY + btnHeight > yesRect.top - 20
+                ) {
+                    randomX = Math.min(maxX, yesRect.right + 60);
+                }
+
+                noBtn.style.left = `${randomX}px`;
+                noBtn.style.top = `${randomY}px`;
+                noBtn.style.transform = `scale(${Math.random() * 0.2 + 0.9}) rotate(${(Math.random() - 0.5) * 20}deg)`;
+            };
+
+            // Dodge on hover, mouseenter, pointerover, touchstart, click
+            noBtn.addEventListener('mouseenter', dodge);
+            noBtn.addEventListener('mouseover', dodge);
+            noBtn.addEventListener('mousemove', dodge);
+            noBtn.addEventListener('touchstart', dodge, { passive: false });
+            noBtn.addEventListener('pointerdown', dodge);
+            noBtn.addEventListener('click', dodge);
+
+            // Proximity radar: if cursor comes within 70px of the button, dodge!
+            document.addEventListener('mousemove', (e) => {
+                if (stepQuestion.classList.contains('step-hidden')) return;
+                const rect = noBtn.getBoundingClientRect();
+                const btnCenterX = rect.left + rect.width / 2;
+                const btnCenterY = rect.top + rect.height / 2;
+
+                const distance = Math.hypot(e.clientX - btnCenterX, e.clientY - btnCenterY);
+                if (distance < 75) {
+                    dodge(e);
+                }
+            });
+        }
+
+        // ==============================================
+        // YES BUTTON CLICK HANDLER
+        // ==============================================
+        function handleYesClick() {
+            // Unlock session
+            RanoodAuth.unlock();
+
+            // Huge celebration effects!
+            triggerMegaCelebration();
+
+            // Show celebration modal
+            setTimeout(() => {
+                celebrationModal.classList.add('active');
+            }, 600);
+        }
+
+        // Mini confetti burst for code unlock
+        function triggerMiniConfetti() {
+            for (let i = 0; i < 40; i++) {
+                createSparklePiece();
+            }
+        }
+
+        // Mega confetti & floating hearts for YES
+        function triggerMegaCelebration() {
+            for (let i = 0; i < 150; i++) {
+                setTimeout(createSparklePiece, i * 15);
+            }
+        }
+
+        function createSparklePiece() {
+            const el = document.createElement('div');
+            const icons = ['💖', '💕', '✨', '🌸', '🎉', '💗', '🎀', '⭐'];
+            el.innerText = icons[Math.floor(Math.random() * icons.length)];
+            el.style.position = 'fixed';
+            el.style.left = Math.random() * 100 + '%';
+            el.style.top = Math.random() * 100 + '%';
+            el.style.fontSize = (Math.random() * 26 + 18) + 'px';
+            el.style.pointerEvents = 'none';
+            el.style.zIndex = '999999';
+            el.style.transition = 'all 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            el.style.opacity = '1';
+            el.style.transform = `scale(0.5) rotate(0deg)`;
+            document.body.appendChild(el);
+
+            setTimeout(() => {
+                el.style.opacity = '0';
+                el.style.transform = `translate(${(Math.random() - 0.5) * 400}px, ${(Math.random() - 0.5) * 400}px) scale(1.5) rotate(${Math.random() * 720}deg)`;
+            }, 50);
+
+            setTimeout(() => el.remove(), 2000);
+        }
+    </script>
+</body>
+</html>
