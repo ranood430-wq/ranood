@@ -3,7 +3,7 @@
     "first-date": {
       "id": "first-date",
       "title": "our first date 💕",
-      "date": "ba7ebek",
+      "date": "First Datee",
       "emoji": "📁💕",
       "description": "first time i saw the love of my life",
       "items": [
@@ -190,8 +190,4 @@
       ]
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 28bfcbd (Add automatic memory folder and music management with background sync)
