@@ -19,7 +19,7 @@
             color: #4a2c3a;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 60px;
+            padding-bottom: 70px;
         }
 
         /* Ambient floating musical notes */
@@ -71,7 +71,7 @@
             border: 2px solid rgba(255, 182, 193, 0.5);
             border-radius: 36px;
             padding: 45px 30px;
-            margin-bottom: 45px;
+            margin-bottom: 25px;
             box-shadow: 0 15px 45px rgba(255, 105, 180, 0.22);
             backdrop-filter: blur(15px);
         }
@@ -98,24 +98,69 @@
         }
 
         .page-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #7a4d64;
             max-width: 650px;
             margin: 0 auto;
             line-height: 1.6;
         }
 
+        /* Action Toolbar */
+        .actions-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.3);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .btn-action:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 28px rgba(255, 20, 147, 0.45);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #d81b60;
+            border: 2px solid #ffb6c1;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background: #fff0f5;
+            border-color: #ff69b4;
+            color: #ff1493;
+        }
+
         /* Music Cards Stacked Under Each Other */
         .songs-grid {
             display: flex;
             flex-direction: column;
-            gap: 35px;
-            max-width: 760px;
+            gap: 30px;
+            max-width: 780px;
             margin: 0 auto;
         }
 
         .song-card {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(20px);
             border: 2px solid rgba(255, 182, 193, 0.55);
             border-radius: 32px;
@@ -136,7 +181,7 @@
         .song-banner {
             position: relative;
             background: rgba(255, 255, 255, 0.95);
-            padding: 28px 32px;
+            padding: 26px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -176,6 +221,7 @@
 
         .song-info {
             flex: 1;
+            min-width: 180px;
         }
 
         .song-title {
@@ -194,17 +240,24 @@
             margin-top: 4px;
         }
 
+        .song-actions-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
         .youtube-play-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
             background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
             color: white;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             font-family: 'Outfit', sans-serif;
             text-decoration: none;
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 50px;
             box-shadow: 0 6px 20px rgba(255, 20, 147, 0.35);
             transition: all 0.3s ease;
@@ -216,12 +269,273 @@
             background: linear-gradient(135deg, #d81b60 0%, #ff1493 100%);
         }
 
+        .song-edit-btn {
+            background: #fff0f5;
+            border: 1.5px solid #ffb6c1;
+            color: #d81b60;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.25s ease;
+        }
+
+        .song-edit-btn:hover {
+            background: #ff1493;
+            color: white;
+            border-color: #ff1493;
+            transform: scale(1.1);
+        }
+
+        .song-delete-btn {
+            background: #fff0f0;
+            border: 1.5px solid #ffcdd2;
+            color: #d32f2f;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+
+        .song-delete-btn:hover {
+            background: #d32f2f;
+            color: white;
+            border-color: #d32f2f;
+            transform: scale(1.1);
+        }
+
+        /* Modal Styles */
+        .vault-modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(43, 24, 35, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .vault-modal-backdrop.active {
+            display: flex;
+            animation: modalFade 0.3s ease;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .vault-modal-card {
+            background: #ffffff;
+            border: 2px solid rgba(255, 182, 193, 0.7);
+            border-radius: 32px;
+            padding: 35px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(255, 20, 147, 0.28);
+        }
+
+        .vault-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #ffe4ec;
+        }
+
+        .vault-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            color: #d81b60;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vault-modal-close {
+            background: #fff0f5;
+            border: 1.5px solid #ffb6c1;
+            color: #d81b60;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .vault-modal-close:hover {
+            background: #ff1493;
+            color: white;
+            border-color: #ff1493;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 700;
+            color: #6a3a50;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .vault-input {
+            width: 100%;
+            padding: 13px 18px;
+            border-radius: 16px;
+            border: 2px solid #ffccd5;
+            background: #fffafc;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: #4a2c3a;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .vault-input:focus {
+            border-color: #ff1493;
+            background: #ffffff;
+            box-shadow: 0 0 12px rgba(255, 20, 147, 0.25);
+        }
+
+        .emoji-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .emoji-chip {
+            background: #fff0f5;
+            border: 1.5px solid #ffb6c1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .emoji-chip:hover, .emoji-chip.active {
+            background: #ff1493;
+            border-color: #ff1493;
+            transform: scale(1.15);
+        }
+
+        .modal-footer-btns {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 2px solid #ffe4ec;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-delete {
+            background: #fff0f0;
+            color: #d32f2f;
+            border: 1.5px solid #ffcdd2;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-delete:hover {
+            background: #d32f2f;
+            color: white;
+            border-color: #d32f2f;
+        }
+
+        /* Sync Modal Options */
+        .sync-card-option {
+            background: #fff8fa;
+            border: 2px solid #ffd1dc;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 18px;
+        }
+
+        .sync-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #d81b60;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sync-card-desc {
+            font-size: 0.9rem;
+            color: #7a4d64;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .sync-status-msg {
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            margin-top: 14px;
+            display: none;
+        }
+
+        .sync-status-msg.success {
+            display: block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1.5px solid #a5d6a7;
+        }
+
+        .sync-status-msg.error {
+            display: block;
+            background: #ffebee;
+            color: #c62828;
+            border: 1.5px solid #ef9a9a;
+        }
+
         @media (max-width: 768px) {
-            .songs-grid {
-                grid-template-columns: 1fr;
-            }
             .page-title {
                 font-size: 2.2rem;
+            }
+            .song-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .song-actions-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .vault-modal-card {
+                padding: 25px 20px;
             }
         }
     </style>
@@ -279,73 +593,445 @@
         <header class="page-header">
             <div class="header-badge">🎵 Special Playlist for Ranood 💕</div>
             <h1 class="page-title">Music</h1>
+            <p class="page-subtitle">
+                Our favorite songs, melodies, and soundtracks that remind us of each other. Add your favorites anytime! ✨
+            </p>
         </header>
 
-        <!-- Song Cards Stacked Under Each Other -->
-        <div class="songs-grid">
+        <!-- Action Toolbar -->
+        <div class="actions-toolbar">
+            <button class="btn-action" onclick="openAddSongModal()">
+                <span>🎵 Add New Song</span>
+            </button>
+            <button class="btn-action btn-secondary" id="btnDirectSaveMusic" onclick="handleDirectSaveMusic()">
+                <span>💾 Save</span>
+            </button>
+        </div>
 
-            <!-- SONG 1: LOVE SONG BY ADELE -->
-            <div class="song-card">
-                <div class="song-banner">
-                    <div style="display: flex; align-items: center; gap: 20px;">
-                        <div class="vinyl-record">
-                            <div class="vinyl-center">💖</div>
-                        </div>
-                        <div class="song-info">
-                            <h2 class="song-title">Love Song 💕</h2>
-                            <div class="song-artist">by Adele</div>
-                        </div>
-                    </div>
-                    <a href="https://www.youtube.com/watch?v=0wPhbmeNSOs&list=RD0wPhbmeNSOs&start_radio=1" target="_blank" rel="noopener noreferrer" class="youtube-play-btn">
-                        <span>▶ Listen on YouTube</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- SONG 2: FENAK BY TOMMY GUN -->
-            <div class="song-card">
-                <div class="song-banner">
-                    <div style="display: flex; align-items: center; gap: 20px;">
-                        <div class="vinyl-record" style="animation-duration: 5s;">
-                            <div class="vinyl-center">🌸</div>
-                        </div>
-                        <div class="song-info">
-                            <h2 class="song-title">Fenak 💫</h2>
-                            <div class="song-artist">by Tommy Gun</div>
-                        </div>
-                    </div>
-                    <a href="https://www.youtube.com/watch?v=2yhUm7-cpWc&list=RD2yhUm7-cpWc&start_radio=1" target="_blank" rel="noopener noreferrer" class="youtube-play-btn">
-                        <span>▶ Listen on YouTube</span>
-                    </a>
-                </div>
-            </div>
-
+        <!-- Song Cards Grid (Dynamic) -->
+        <div class="songs-grid" id="songsContainer">
+            <!-- Dynamically populated via renderSongs() -->
         </div>
     </div>
 
+    <!-- ==============================================
+         ADD / EDIT SONG MODAL
+         ============================================== -->
+    <div class="vault-modal-backdrop" id="songModalBackdrop" onclick="handleModalBackdrop(event, 'songModalBackdrop')">
+        <div class="vault-modal-card">
+            <div class="vault-modal-header">
+                <h3 class="vault-modal-title" id="songModalHeading">🎵 Add Song</h3>
+                <button class="vault-modal-close" onclick="closeSongModal()">✕</button>
+            </div>
+
+            <form id="songForm" onsubmit="handleSongFormSubmit(event)">
+                <input type="hidden" id="songEditId">
+
+                <!-- Song Title -->
+                <div class="form-group">
+                    <label class="form-label" for="inputSongTitle">🎶 Song Title</label>
+                    <input type="text" id="inputSongTitle" class="vault-input" placeholder="e.g. Until I Found You 💕" required>
+                </div>
+
+                <!-- Artist -->
+                <div class="form-group">
+                    <label class="form-label" for="inputSongArtist">🎤 Artist / Singer</label>
+                    <input type="text" id="inputSongArtist" class="vault-input" placeholder="e.g. Stephen Sanchez" required>
+                </div>
+
+                <!-- YouTube or Audio Link -->
+                <div class="form-group">
+                    <label class="form-label" for="inputSongUrl">🔗 YouTube Link or Music URL</label>
+                    <input type="url" id="inputSongUrl" class="vault-input" placeholder="https://www.youtube.com/watch?v=..." required>
+                </div>
+
+                <!-- Vinyl Center Emoji -->
+                <div class="form-group">
+                    <label class="form-label" for="inputSongEmoji">💿 Vinyl Center Icon</label>
+                    <input type="text" id="inputSongEmoji" class="vault-input" value="💖" style="width: 100px;" required>
+                    <div class="emoji-chips">
+                        <span class="emoji-chip" onclick="selectSongEmoji('💖')">💖</span>
+                        <span class="emoji-chip" onclick="selectSongEmoji('🌸')">🌸</span>
+                        <span class="emoji-chip" onclick="selectSongEmoji('🎵')">🎵</span>
+                        <span class="emoji-chip" onclick="selectSongEmoji('💫')">💫</span>
+                        <span class="emoji-chip" onclick="selectSongEmoji('✨')">✨</span>
+                        <span class="emoji-chip" onclick="selectSongEmoji('💍')">💍</span>
+                        <span class="emoji-chip" onclick="selectSongEmoji('👑')">👑</span>
+                        <span class="emoji-chip" onclick="selectSongEmoji('🌙')">🌙</span>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer-btns">
+                    <div>
+                        <button type="button" id="btnDeleteSong" class="btn-delete" style="display: none;" onclick="deleteCurrentSong()">
+                            🗑️ Delete Song
+                        </button>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" class="btn-action btn-secondary" onclick="closeSongModal()">Cancel</button>
+                        <button type="submit" class="btn-action">💾 Save Song</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         GITHUB SAVE & SYNC MODAL
+         ============================================== -->
+    <div class="vault-modal-backdrop" id="syncModalBackdrop" onclick="handleModalBackdrop(event, 'syncModalBackdrop')">
+        <div class="vault-modal-card">
+            <div class="vault-modal-header">
+                <h3 class="vault-modal-title">💾 GitHub Save & Sync</h3>
+                <button class="vault-modal-close" onclick="closeSyncModal()">✕</button>
+            </div>
+
+            <p style="color: #7a4d64; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5;">
+                Your music changes are saved instantly in your browser! To host them permanently on GitHub Pages, pick an option below:
+            </p>
+
+            <!-- Option 1: Direct GitHub Sync -->
+            <div class="sync-card-option">
+                <div class="sync-card-title">🚀 Option 1: 1-Click Sync to GitHub (Automatic)</div>
+                <div class="sync-card-desc">
+                    Enter your GitHub Personal Access Token once. Whenever you click <strong>Sync to GitHub</strong>, it commits <code>music.json</code> directly to your repository!
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <input type="password" id="inputGitHubPat" class="vault-input" placeholder="Paste GitHub Token (PAT)..." style="flex: 1; min-width: 220px;">
+                    <button class="btn-action" style="padding: 10px 20px;" onclick="handleGitHubPush()">
+                        <span>Push to GitHub 🚀</span>
+                    </button>
+                </div>
+                <div id="syncStatusMsg" class="sync-status-msg"></div>
+            </div>
+
+            <!-- Option 2: Download File -->
+            <div class="sync-card-option">
+                <div class="sync-card-title">📥 Option 2: Download & Git Push (Manual)</div>
+                <div class="sync-card-desc">
+                    Download the updated <code>music.json</code> file, place it in your project folder, and push to GitHub.
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn-action btn-secondary" onclick="handleDownloadMusicJson()">
+                        <span>📥 Download music.json</span>
+                    </button>
+                    <button class="btn-action btn-secondary" onclick="handleCopyMusicJson()">
+                        <span>📋 Copy JSON</span>
+                    </button>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-top: 15px;">
+                <button class="btn-action btn-secondary" onclick="closeSyncModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="shared-nav.js"></script>
+    <script src="sync-storage.js"></script>
     <script>
-        // Floating musical symbols
-        const notesContainer = document.getElementById('musicNotes');
-        const symbols = ['♪', '♫', '♬', '♩', '💕', '✨', '💖', '🌸'];
+        const DEFAULT_MUSIC = {
+            songs: [
+                {
+                    id: "song-adele-love-song",
+                    title: "Love Song 💕",
+                    artist: "by Adele",
+                    url: "https://www.youtube.com/watch?v=0wPhbmeNSOs&list=RD0wPhbmeNSOs&start_radio=1",
+                    emoji: "💖"
+                },
+                {
+                    id: "song-tommy-gun-fenak",
+                    title: "Fenak 💫",
+                    artist: "by Tommy Gun",
+                    url: "https://www.youtube.com/watch?v=2yhUm7-cpWc&list=RD2yhUm7-cpWc&start_radio=1",
+                    emoji: "🌸"
+                }
+            ]
+        };
 
-        function addFloatingNote() {
-            const note = document.createElement('div');
-            note.className = 'music-note';
-            note.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-            note.style.left = Math.random() * 100 + '%';
-            note.style.fontSize = (Math.random() * 20 + 20) + 'px';
-            note.style.animationDuration = (Math.random() * 6 + 8) + 's';
-            notesContainer.appendChild(note);
+        let musicData = { songs: [] };
 
-            setTimeout(() => {
-                note.remove();
-            }, 14000);
+        document.addEventListener('DOMContentLoaded', async () => {
+            musicData = await RanoodSync.loadMusic(DEFAULT_MUSIC);
+            renderSongs();
+
+            const savedPat = RanoodSync.getGitHubPat();
+            if (savedPat) {
+                document.getElementById('inputGitHubPat').value = savedPat;
+            }
+
+            initFloatingNotes();
+        });
+
+        function renderSongs() {
+            const container = document.getElementById('songsContainer');
+            container.innerHTML = '';
+
+            if (!musicData.songs || musicData.songs.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.8); border-radius: 28px;">
+                        <h3 style="color: #d81b60; font-size: 1.5rem; margin-bottom: 8px;">No songs in your playlist yet 🎵</h3>
+                        <p style="color: #7a4d64;">Click "Add New Song" above to add your first romantic tune!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            musicData.songs.forEach((song, index) => {
+                const card = document.createElement('div');
+                card.className = 'song-card';
+
+                const spinSpeed = (5 + (index % 3)) + 's';
+
+                card.innerHTML = `
+                    <div class="song-banner">
+                        <div style="display: flex; align-items: center; gap: 20px; flex: 1;">
+                            <div class="vinyl-record" style="animation-duration: ${spinSpeed};">
+                                <div class="vinyl-center">${song.emoji || '💖'}</div>
+                            </div>
+                            <div class="song-info">
+                                <h2 class="song-title">${song.title}</h2>
+                                <div class="song-artist">${song.artist.startsWith('by ') ? song.artist : 'by ' + song.artist}</div>
+                            </div>
+                        </div>
+                        <div class="song-actions-right">
+                            <button class="song-edit-btn" title="Edit song" onclick="openEditSongModal('${song.id}')">✏️</button>
+                            <button class="song-delete-btn" title="Delete song" onclick="deleteSongById('${song.id}')">🗑️</button>
+                            <a href="${song.url}" target="_blank" rel="noopener noreferrer" class="youtube-play-btn">
+                                <span>▶ Listen on YouTube</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
         }
 
-        setInterval(addFloatingNote, 1200);
-        for (let i = 0; i < 8; i++) {
-            addFloatingNote();
+        // Add / Edit Song Modals
+        function openAddSongModal() {
+            document.getElementById('songModalHeading').innerText = '🎵 Add Song';
+            document.getElementById('songEditId').value = '';
+            document.getElementById('inputSongTitle').value = '';
+            document.getElementById('inputSongArtist').value = '';
+            document.getElementById('inputSongUrl').value = '';
+            document.getElementById('inputSongEmoji').value = '💖';
+            document.getElementById('btnDeleteSong').style.display = 'none';
+
+            document.getElementById('songModalBackdrop').classList.add('active');
+        }
+
+        function openEditSongModal(id) {
+            const song = musicData.songs.find(s => s.id === id);
+            if (!song) return;
+
+            document.getElementById('songModalHeading').innerText = '✏️ Modify Song';
+            document.getElementById('songEditId').value = id;
+            document.getElementById('inputSongTitle').value = song.title;
+            document.getElementById('inputSongArtist').value = song.artist.replace(/^by\s+/i, '');
+            document.getElementById('inputSongUrl').value = song.url;
+            document.getElementById('inputSongEmoji').value = song.emoji || '💖';
+            document.getElementById('btnDeleteSong').style.display = 'inline-block';
+
+            document.getElementById('songModalBackdrop').classList.add('active');
+        }
+
+        function closeSongModal() {
+            document.getElementById('songModalBackdrop').classList.remove('active');
+        }
+
+        function selectSongEmoji(emoji) {
+            document.getElementById('inputSongEmoji').value = emoji;
+        }
+
+        function handleSongFormSubmit(e) {
+            e.preventDefault();
+
+            const editId = document.getElementById('songEditId').value.trim();
+            const title = document.getElementById('inputSongTitle').value.trim();
+            const artist = document.getElementById('inputSongArtist').value.trim();
+            const url = document.getElementById('inputSongUrl').value.trim();
+            const emoji = document.getElementById('inputSongEmoji').value.trim() || '💖';
+
+            if (editId) {
+                const song = musicData.songs.find(s => s.id === editId);
+                if (song) {
+                    song.title = title;
+                    song.artist = artist.startsWith('by ') ? artist : 'by ' + artist;
+                    song.url = url;
+                    song.emoji = emoji;
+                }
+            } else {
+                musicData.songs.push({
+                    id: 'song-' + Date.now(),
+                    title: title,
+                    artist: artist.startsWith('by ') ? artist : 'by ' + artist,
+                    url: url,
+                    emoji: emoji
+                });
+            }
+
+            RanoodSync.saveMusicLocally(musicData);
+            closeSongModal();
+            renderSongs();
+            showToast('Saved! Syncing... 🎵💕');
+            RanoodSync.autoSyncMusic(musicData).then(ok => {
+                if (ok) showToast('Saved & Synced 💕');
+            });
+        }
+
+        function deleteSongById(id) {
+            const song = musicData.songs.find(s => s.id === id);
+            if (!song) return;
+
+            if (confirm(`Are you sure you want to remove the song "${song.title}"? 🎵`)) {
+                musicData.songs = musicData.songs.filter(s => s.id !== id);
+                RanoodSync.saveMusicLocally(musicData);
+                renderSongs();
+                showToast(`Removed "${song.title}"! Syncing... 🎵`);
+                RanoodSync.autoSyncMusic(musicData).then(ok => {
+                    if (ok) showToast('Saved & Synced 💕');
+                });
+            }
+        }
+
+        function deleteCurrentSong() {
+            const editId = document.getElementById('songEditId').value.trim();
+            if (!editId) return;
+
+            deleteSongById(editId);
+            closeSongModal();
+        }
+
+        async function handleDirectSaveMusic() {
+            const btn = document.getElementById('btnDirectSaveMusic');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<span>Saving... ⏳</span>';
+            btn.disabled = true;
+
+            try {
+                await RanoodSync.pushToGitHub('music.json', musicData, 'Update music playlist via web portal 💕');
+                showToast('Saved & Synced 💕');
+            } catch (err) {
+                console.error(err);
+                showToast('Saved locally 💕');
+            } finally {
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+            }
+        }
+
+        // GitHub Sync
+        function openSyncModal() {
+            document.getElementById('syncStatusMsg').className = 'sync-status-msg';
+            document.getElementById('syncStatusMsg').style.display = 'none';
+            document.getElementById('syncModalBackdrop').classList.add('active');
+        }
+
+        function closeSyncModal() {
+            document.getElementById('syncModalBackdrop').classList.remove('active');
+        }
+
+        async function handleGitHubPush() {
+            const patInput = document.getElementById('inputGitHubPat');
+            const pat = patInput.value.trim();
+            const statusMsg = document.getElementById('syncStatusMsg');
+
+            if (!pat) {
+                statusMsg.className = 'sync-status-msg error';
+                statusMsg.innerText = 'Please enter your GitHub Personal Access Token first.';
+                statusMsg.style.display = 'block';
+                return;
+            }
+
+            RanoodSync.setGitHubPat(pat);
+            statusMsg.className = 'sync-status-msg';
+            statusMsg.style.display = 'block';
+            statusMsg.style.background = '#e3f2fd';
+            statusMsg.style.color = '#1565c0';
+            statusMsg.style.borderColor = '#90caf9';
+            statusMsg.innerText = 'Connecting to GitHub repository and pushing music.json... ⏳';
+
+            try {
+                await RanoodSync.pushToGitHub('music.json', musicData, 'Update music playlist via web portal 💕');
+                statusMsg.className = 'sync-status-msg success';
+                statusMsg.innerText = '✅ Successfully committed to GitHub! GitHub Pages will refresh with the updates in ~1-2 minutes 💕';
+            } catch (err) {
+                statusMsg.className = 'sync-status-msg error';
+                statusMsg.innerText = '❌ GitHub Error: ' + err.message;
+            }
+        }
+
+        function handleDownloadMusicJson() {
+            RanoodSync.downloadJson('music.json', musicData);
+            showToast('Downloaded music.json! 🎵');
+        }
+
+        async function handleCopyMusicJson() {
+            try {
+                await RanoodSync.copyToClipboard(musicData);
+                showToast('Copied music JSON to clipboard! 📋');
+            } catch (e) {
+                alert('Could not copy automatically. You can download the file instead!');
+            }
+        }
+
+        function handleModalBackdrop(e, backdropId) {
+            if (e.target.id === backdropId) {
+                document.getElementById(backdropId).classList.remove('active');
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.innerText = msg;
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: linear-gradient(135deg, #ff1493, #ff69b4);
+                color: white;
+                padding: 14px 26px;
+                border-radius: 50px;
+                font-family: 'Outfit', sans-serif;
+                font-size: 1rem;
+                font-weight: 700;
+                box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+                z-index: 999999;
+                animation: modalFade 0.3s ease;
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.4s ease';
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        // Ambient Floating Musical Notes
+        function initFloatingNotes() {
+            const notesContainer = document.getElementById('musicNotes');
+            const symbols = ['♪', '♫', '♬', '♩', '💕', '✨', '💖', '🌸'];
+
+            function addFloatingNote() {
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                note.style.animationDuration = (Math.random() * 6 + 8) + 's';
+                notesContainer.appendChild(note);
+
+                setTimeout(() => {
+                    note.remove();
+                }, 14000);
+            }
+
+            setInterval(addFloatingNote, 1200);
+            for (let i = 0; i < 8; i++) {
+                addFloatingNote();
+            }
         }
     </script>
 </body>

@@ -37,7 +37,7 @@
             border: 2px solid rgba(255, 182, 193, 0.5);
             border-radius: 36px;
             padding: 40px 30px;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             box-shadow: 0 15px 45px rgba(255, 105, 180, 0.2);
             backdrop-filter: blur(15px);
         }
@@ -71,10 +71,55 @@
             line-height: 1.6;
         }
 
+        /* Action Toolbar */
+        .actions-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.3);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .btn-action:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 28px rgba(255, 20, 147, 0.45);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #d81b60;
+            border: 2px solid #ffb6c1;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background: #fff0f5;
+            border-color: #ff69b4;
+            color: #ff1493;
+        }
+
         /* Folders Grid */
         .folders-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
         }
@@ -87,7 +132,6 @@
             box-shadow: 0 14px 40px rgba(255, 105, 180, 0.16);
             backdrop-filter: blur(15px);
             transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-            cursor: pointer;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -111,16 +155,61 @@
             border-color: #ff69b4;
         }
 
-        .folder-icon-wrap {
+        .folder-top-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             margin-top: 8px;
         }
 
         .folder-icon {
             font-size: 2.6rem;
+            cursor: pointer;
+        }
+
+        .folder-edit-btn {
+            background: rgba(255, 240, 245, 0.9);
+            border: 1.5px solid #ffb6c1;
+            color: #d81b60;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.25s ease;
+        }
+
+        .folder-edit-btn:hover {
+            background: #ff1493;
+            color: white;
+            border-color: #ff1493;
+            transform: scale(1.1);
+        }
+
+        .folder-delete-btn {
+            background: #fff0f0;
+            border: 1.5px solid #ffcdd2;
+            color: #d32f2f;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+
+        .folder-delete-btn:hover {
+            background: #d32f2f;
+            color: white;
+            border-color: #d32f2f;
+            transform: scale(1.1);
         }
 
         .date-badge {
@@ -142,35 +231,45 @@
             color: #d81b60;
             margin-bottom: 6px;
             font-weight: 700;
+            cursor: pointer;
         }
 
         .folder-desc {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             color: #8c526f;
             line-height: 1.5;
             margin-bottom: 16px;
             flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .folder-preview-stack {
             position: relative;
-            height: 120px;
-            border-radius: 18px;
+            height: 250px;
+            border-radius: 22px;
             overflow: hidden;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             background: #ffe4ec;
-            border: 2px solid rgba(255, 182, 193, 0.4);
+            border: 2px solid rgba(255, 182, 193, 0.45);
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(255, 105, 180, 0.14);
         }
 
-        .folder-preview-stack img {
+        .folder-preview-stack img,
+        .folder-preview-stack video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 25%;
             transition: transform 0.4s ease;
         }
 
-        .folder-card:hover .folder-preview-stack img {
-            transform: scale(1.08);
+        .folder-card:hover .folder-preview-stack img,
+        .folder-card:hover .folder-preview-stack video {
+            transform: scale(1.06);
         }
 
         .folder-preview-overlay {
@@ -178,17 +277,23 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 6px 12px;
-            background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+            padding: 8px 14px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
             color: white;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
+        .card-button-row {
+            display: flex;
+            gap: 10px;
+        }
+
         .open-folder-btn {
+            flex: 1;
             background: linear-gradient(135deg, #ff69b4, #ff1493);
             color: white;
             border: none;
@@ -226,7 +331,7 @@
             background: rgba(255, 255, 255, 0.95);
             border: 2px solid rgba(255, 182, 193, 0.6);
             border-radius: 28px;
-            padding: 22px 28px;
+            padding: 24px 28px;
             margin-bottom: 28px;
             display: flex;
             align-items: center;
@@ -234,6 +339,13 @@
             flex-wrap: wrap;
             gap: 16px;
             box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+        }
+
+        .header-actions-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .back-folders-btn {
@@ -265,15 +377,19 @@
 
         .active-folder-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.9rem;
+            font-size: 2rem;
             color: #d81b60;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
         }
 
         .active-folder-desc-text {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: #ff1493;
             font-style: italic;
-            margin-top: 4px;
+            margin-top: 6px;
             line-height: 1.5;
         }
 
@@ -284,7 +400,7 @@
             align-items: center;
             justify-content: flex-end;
             gap: 12px;
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         /* Media Grid */
@@ -382,6 +498,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 10px;
         }
 
         .media-caption span.date {
@@ -390,6 +507,7 @@
             background: #fff0f5;
             padding: 4px 10px;
             border-radius: 12px;
+            white-space: nowrap;
         }
 
         /* Lightbox */
@@ -399,7 +517,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(43, 24, 35, 0.88);
+            background: rgba(43, 24, 35, 0.9);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             display: none;
@@ -469,23 +587,14 @@
             transform: scale(1.1);
         }
 
-        .lightbox-caption {
-            color: white;
-            margin-top: 15px;
-            font-size: 1.1rem;
-            text-align: center;
-            font-family: 'Outfit', sans-serif;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
         .lightbox-nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             border: none;
             color: white;
-            font-size: 2rem;
+            font-size: 1.8rem;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -494,6 +603,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s ease;
+            user-select: none;
         }
 
         .lightbox-nav-btn:hover {
@@ -507,6 +617,326 @@
 
         .lightbox-next {
             right: -65px;
+        }
+
+        .lightbox-caption {
+            margin-top: 15px;
+            color: white;
+            font-size: 1.05rem;
+            text-align: center;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+        }
+
+        /* =========================================================
+           POPUP MODAL (Add/Edit Folder & GitHub Sync)
+           ========================================================= */
+        .vault-modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(43, 24, 35, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .vault-modal-backdrop.active {
+            display: flex;
+            animation: modalFade 0.3s ease;
+        }
+
+        .vault-modal-card {
+            background: #ffffff;
+            border: 2px solid rgba(255, 182, 193, 0.7);
+            border-radius: 32px;
+            padding: 35px;
+            max-width: 680px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(255, 20, 147, 0.28);
+        }
+
+        .vault-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #ffe4ec;
+        }
+
+        .vault-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            color: #d81b60;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vault-modal-close {
+            background: #fff0f5;
+            border: 1.5px solid #ffb6c1;
+            color: #d81b60;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .vault-modal-close:hover {
+            background: #ff1493;
+            color: white;
+            border-color: #ff1493;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 700;
+            color: #6a3a50;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .vault-input, .vault-textarea {
+            width: 100%;
+            padding: 13px 18px;
+            border-radius: 16px;
+            border: 2px solid #ffccd5;
+            background: #fffafc;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: #4a2c3a;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .vault-input:focus, .vault-textarea:focus {
+            border-color: #ff1493;
+            background: #ffffff;
+            box-shadow: 0 0 12px rgba(255, 20, 147, 0.25);
+        }
+
+        .vault-textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        /* Emoji selector */
+        .emoji-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .emoji-chip {
+            background: #fff0f5;
+            border: 1.5px solid #ffb6c1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .emoji-chip:hover, .emoji-chip.active {
+            background: #ff1493;
+            border-color: #ff1493;
+            transform: scale(1.15);
+        }
+
+        /* Upload Dropzone */
+        .vault-dropzone {
+            border: 2px dashed #ff69b4;
+            border-radius: 20px;
+            background: #fff5f8;
+            padding: 28px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .vault-dropzone:hover, .vault-dropzone.dragover {
+            background: #ffe4ec;
+            border-color: #ff1493;
+            transform: scale(1.01);
+        }
+
+        .vault-dropzone-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        .vault-dropzone-text {
+            font-weight: 700;
+            color: #d81b60;
+            font-size: 1.05rem;
+        }
+
+        .vault-dropzone-sub {
+            font-size: 0.85rem;
+            color: #8c526f;
+            margin-top: 4px;
+        }
+
+        /* Preview Items Container */
+        .uploaded-items-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+
+        .upload-preview-card {
+            position: relative;
+            height: 120px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 2px solid #ffb6c1;
+            background: #000;
+        }
+
+        .upload-preview-card img,
+        .upload-preview-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(216, 27, 96, 0.85);
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .preview-delete-btn:hover {
+            background: red;
+            transform: scale(1.15);
+        }
+
+        .preview-tag {
+            position: absolute;
+            bottom: 4px;
+            left: 4px;
+            font-size: 10px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+
+        /* Form Footer Buttons */
+        .modal-footer-btns {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 2px solid #ffe4ec;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-delete {
+            background: #fff0f0;
+            color: #d32f2f;
+            border: 1.5px solid #ffcdd2;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-delete:hover {
+            background: #d32f2f;
+            color: white;
+            border-color: #d32f2f;
+        }
+
+        /* Sync Modal Options */
+        .sync-card-option {
+            background: #fff8fa;
+            border: 2px solid #ffd1dc;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 18px;
+        }
+
+        .sync-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #d81b60;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sync-card-desc {
+            font-size: 0.9rem;
+            color: #7a4d64;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .sync-status-msg {
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            margin-top: 14px;
+            display: none;
+        }
+
+        .sync-status-msg.success {
+            display: block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1.5px solid #a5d6a7;
+        }
+
+        .sync-status-msg.error {
+            display: block;
+            background: #ffebee;
+            color: #c62828;
+            border: 1.5px solid #ef9a9a;
         }
 
         @media (max-width: 768px) {
@@ -525,6 +955,15 @@
             }
             .active-folder-info {
                 text-align: left;
+            }
+            .active-folder-title {
+                justify-content: flex-start;
+            }
+            .active-folder-meta {
+                justify-content: flex-start;
+            }
+            .vault-modal-card {
+                padding: 25px 20px;
             }
         }
     </style>
@@ -581,125 +1020,25 @@
             <div class="header-badge">📁 Romantic Memory Vault 💖</div>
             <h1 class="page-title">Our Precious Moments</h1>
             <p class="page-subtitle">
-                Organized into folders with their dates. Click any folder to see all our photos and videos! ✨
+                Organized into folders with their dates. You can browse, add new memory folders, upload photos & videos, and edit anytime! ✨
             </p>
         </header>
 
+        <!-- Action Toolbar -->
+        <div class="actions-toolbar">
+            <button class="btn-action" onclick="openAddFolderModal()">
+                <span>✨ Add New Memory Folder</span>
+            </button>
+            <button class="btn-action btn-secondary" id="btnDirectSave" onclick="handleDirectSave()">
+                <span>💾 Save</span>
+            </button>
+        </div>
+
         <!-- ==============================================
-             SECTION 1: FOLDERS OVERVIEW
+             SECTION 1: FOLDERS OVERVIEW (Dynamic)
              ============================================== -->
         <div id="foldersOverview" class="folders-grid">
-
-            <!-- FOLDER 1: OUR FIRST DATE (Has the old images from birthday.html) -->
-            <div class="folder-card" onclick="openFolder('first-date')">
-                <div class="folder-icon-wrap">
-                    <span class="folder-icon">📁💕</span>
-                    <span class="date-badge">📅 First Date</span>
-                </div>
-                <h2 class="folder-title">our first date</h2>
-                <p class="folder-desc">
-                    first time i saw the love of my life
-                </p>
-                <div class="folder-preview-stack">
-                    <img src="WhatsApp Image 2026-06-01 at 17.10.21.jpeg" alt="Our First Date Preview">
-                    <div class="folder-preview-overlay">
-                        <span>📸 3 Photos • 2 Videos</span>
-                        <span>Open ➔</span>
-                    </div>
-                </div>
-                <button class="open-folder-btn">
-                    <span>Open Memory Folder</span> 📂
-                </button>
-            </div>
-
-            <!-- FOLDER 2: 2-06 (Has images titled 2-06) -->
-            <div class="folder-card" onclick="openFolder('2-06')">
-                <div class="folder-icon-wrap">
-                    <span class="folder-icon">📁🌸</span>
-                    <span class="date-badge">📅 2-06</span>
-                </div>
-                <h2 class="folder-title">2-06</h2>
-                <p class="folder-desc">
-                    first birthday with u habibty ba7ebek
-                </p>
-                <div class="folder-preview-stack">
-                    <img src="2-06.jpeg" alt="2-06 Preview">
-                    <div class="folder-preview-overlay">
-                        <span>📸 3 Photos</span>
-                        <span>Open ➔</span>
-                    </div>
-                </div>
-                <button class="open-folder-btn">
-                    <span>Open Memory Folder</span> 📂
-                </button>
-            </div>
-
-            <!-- FOLDER 3: 24-06 -->
-            <div class="folder-card" onclick="openFolder('24-06')">
-                <div class="folder-icon-wrap">
-                    <span class="folder-icon">📁✨</span>
-                    <span class="date-badge">📅 24-06</span>
-                </div>
-                <h2 class="folder-title">24-06</h2>
-                <p class="folder-desc">
-                    first time eating your food teslam 2edeky
-                </p>
-                <div class="folder-preview-stack">
-                    <img src="24-06.jpeg" alt="24-06 Preview">
-                    <div class="folder-preview-overlay">
-                        <span>📸 4 Photos • 1 Video</span>
-                        <span>Open ➔</span>
-                    </div>
-                </div>
-                <button class="open-folder-btn">
-                    <span>Open Memory Folder</span> 📂
-                </button>
-            </div>
-
-            <!-- FOLDER 4: 15-7 -->
-            <div class="folder-card" onclick="openFolder('15-7')">
-                <div class="folder-icon-wrap">
-                    <span class="folder-icon">📁☀️</span>
-                    <span class="date-badge">📅 15-7</span>
-                </div>
-                <h2 class="folder-title">15-7</h2>
-                <p class="folder-desc">
-                    wont forget that hard time that you were the reason to overcome it
-                </p>
-                <div class="folder-preview-stack">
-                    <img src="15-7.jpeg" alt="15-7 Preview">
-                    <div class="folder-preview-overlay">
-                        <span>📸 2 Photos • 1 Video</span>
-                        <span>Open ➔</span>
-                    </div>
-                </div>
-                <button class="open-folder-btn">
-                    <span>Open Memory Folder</span> 📂
-                </button>
-            </div>
-
-            <!-- FOLDER 5: 29-9 -->
-            <div class="folder-card" onclick="openFolder('29-9')">
-                <div class="folder-icon-wrap">
-                    <span class="folder-icon">📁🍂</span>
-                    <span class="date-badge">📅 29-9</span>
-                </div>
-                <h2 class="folder-title">29-9</h2>
-                <p class="folder-desc">
-                    ba7eb elyoum da awy ba7eb el lip combo kont far7an awy wna batswar m3aky kol 7aga kanet 7lwa fl youm da w teslam 2edeky 3l akl
-                </p>
-                <div class="folder-preview-stack">
-                    <img src="29-9.jpeg" alt="29-9 Preview">
-                    <div class="folder-preview-overlay">
-                        <span>📸 8 Photos • 1 Video</span>
-                        <span>Open ➔</span>
-                    </div>
-                </div>
-                <button class="open-folder-btn">
-                    <span>Open Memory Folder</span> 📂
-                </button>
-            </div>
-
+            <!-- Dynamically populated via renderFolders() -->
         </div>
 
         <!-- ==============================================
@@ -707,11 +1046,21 @@
              ============================================== -->
         <div id="activeFolderView" class="active-folder-view">
             <div class="active-folder-header">
-                <button class="back-folders-btn" onclick="closeFolder()">
-                    <span>← Back to All Folders</span>
-                </button>
+                <div class="header-actions-left">
+                    <button class="back-folders-btn" onclick="closeFolder()">
+                        <span>← Back to All Folders</span>
+                    </button>
+                    <button class="btn-action" style="padding: 10px 18px; font-size: 0.9rem;" onclick="editCurrentFolder()">
+                        <span>✏️ Modify Folder</span>
+                    </button>
+                    <button class="btn-action btn-delete" style="padding: 10px 18px; font-size: 0.9rem;" onclick="deleteCurrentFolderDirectly()">
+                        <span>🗑️ Delete Whole Folder</span>
+                    </button>
+                </div>
                 <div class="active-folder-info">
-                    <h2 class="active-folder-title" id="folderDisplayTitle">Folder Name</h2>
+                    <h2 class="active-folder-title" id="folderDisplayTitle">
+                        <span id="folderTitleText">Folder Name</span>
+                    </h2>
                     <p class="active-folder-desc-text" id="folderDisplayDesc"></p>
                     <div class="active-folder-meta">
                         <span id="folderDisplayDate" class="date-badge">📅 Date</span>
@@ -721,7 +1070,7 @@
             </div>
 
             <div class="media-grid" id="mediaGrid">
-                <!-- Injected via JavaScript -->
+                <!-- Dynamically populated -->
             </div>
         </div>
 
@@ -736,104 +1085,377 @@
             <button class="lightbox-nav-btn lightbox-prev" onclick="navigateLightbox(-1)" title="Previous">❮</button>
             <button class="lightbox-nav-btn lightbox-next" onclick="navigateLightbox(1)" title="Next">❯</button>
 
-            <div class="lightbox-media-holder" id="lightboxMediaHolder">
-                <!-- Image or Video -->
+            <div class="lightbox-media-holder" id="lightboxMediaHolder"></div>
+            <div class="lightbox-caption" id="lightboxCaption">Caption</div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         ADD / EDIT FOLDER MODAL
+         ============================================== -->
+    <div class="vault-modal-backdrop" id="folderModalBackdrop" onclick="handleModalBackdrop(event, 'folderModalBackdrop')">
+        <div class="vault-modal-card">
+            <div class="vault-modal-header">
+                <h3 class="vault-modal-title" id="folderModalHeading">✨ Add Memory Folder</h3>
+                <button class="vault-modal-close" onclick="closeFolderModal()">✕</button>
             </div>
-            <div class="lightbox-caption" id="lightboxCaption">
-                Caption
+
+            <form id="folderForm" onsubmit="handleFolderFormSubmit(event)">
+                <input type="hidden" id="folderEditId">
+
+                <!-- Folder Name -->
+                <div class="form-group">
+                    <label class="form-label" for="inputFolderTitle">📁 Folder Name</label>
+                    <input type="text" id="inputFolderTitle" class="vault-input" placeholder="e.g. Our Cute Picnic 💕" required>
+                </div>
+
+                <!-- Date / Tag -->
+                <div class="form-group">
+                    <label class="form-label" for="inputFolderDate">📅 Date or Tag</label>
+                    <input type="text" id="inputFolderDate" class="vault-input" placeholder="e.g. 14-02 or Our Sweet Day" required>
+                </div>
+
+                <!-- Icon / Emoji -->
+                <div class="form-group">
+                    <label class="form-label" for="inputFolderEmoji">🎨 Folder Icon / Emoji</label>
+                    <input type="text" id="inputFolderEmoji" class="vault-input" value="📁💕" style="width: 140px;" required>
+                    <div class="emoji-chips">
+                        <span class="emoji-chip" onclick="selectEmoji('📁💕')">📁💕</span>
+                        <span class="emoji-chip" onclick="selectEmoji('📁🌸')">📁🌸</span>
+                        <span class="emoji-chip" onclick="selectEmoji('📁✨')">📁✨</span>
+                        <span class="emoji-chip" onclick="selectEmoji('📁☀️')">📁☀️</span>
+                        <span class="emoji-chip" onclick="selectEmoji('📁🍂')">📁🍂</span>
+                        <span class="emoji-chip" onclick="selectEmoji('👑💖')">👑💖</span>
+                        <span class="emoji-chip" onclick="selectEmoji('💍💕')">💍💕</span>
+                        <span class="emoji-chip" onclick="selectEmoji('🎂🎉')">🎂🎉</span>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label class="form-label" for="inputFolderDesc">💌 Description / Memory Note</label>
+                    <textarea id="inputFolderDesc" class="vault-textarea" placeholder="Write what made this day so special for both of you..."></textarea>
+                </div>
+
+                <!-- Photos & Videos Upload Dropzone -->
+                <div class="form-group">
+                    <label class="form-label">📸 Add Photos & Videos</label>
+                    <div class="vault-dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+                        <div class="vault-dropzone-icon">📷✨</div>
+                        <div class="vault-dropzone-text">Click or Drag & Drop Photos / Videos Here</div>
+                        <div class="vault-dropzone-sub">Upload as many as you want! (Photos are auto-optimized for smooth speed)</div>
+                    </div>
+                    <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display: none;" onchange="handleFilesSelected(event)">
+
+                    <!-- Optional URL input -->
+                    <div style="display: flex; gap: 8px; margin-top: 10px;">
+                        <input type="url" id="inputMediaUrl" class="vault-input" placeholder="Or paste an image/video URL (optional)..." style="font-size: 0.9rem;">
+                        <button type="button" class="btn-action btn-secondary" style="padding: 8px 16px; font-size: 0.85rem;" onclick="addMediaByUrl()">Add URL</button>
+                    </div>
+
+                    <!-- Uploaded items preview grid -->
+                    <div class="uploaded-items-list" id="modalItemsPreview"></div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer-btns">
+                    <div>
+                        <button type="button" id="btnDeleteFolder" class="btn-delete" style="display: none;" onclick="deleteCurrentFolder()">
+                            🗑️ Delete Folder
+                        </button>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" class="btn-action btn-secondary" onclick="closeFolderModal()">Cancel</button>
+                        <button type="submit" class="btn-action">💾 Save Memory Folder</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         GITHUB SAVE & SYNC MODAL
+         ============================================== -->
+    <div class="vault-modal-backdrop" id="syncModalBackdrop" onclick="handleModalBackdrop(event, 'syncModalBackdrop')">
+        <div class="vault-modal-card">
+            <div class="vault-modal-header">
+                <h3 class="vault-modal-title">💾 GitHub Save & Sync</h3>
+                <button class="vault-modal-close" onclick="closeSyncModal()">✕</button>
+            </div>
+
+            <p style="color: #7a4d64; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5;">
+                Your memories and modifications are saved instantly right here in your browser! To host them permanently on GitHub so anyone visiting the link sees them, use one of the two easy options below:
+            </p>
+
+            <!-- Option 1: Direct GitHub Sync -->
+            <div class="sync-card-option">
+                <div class="sync-card-title">🚀 Option 1: 1-Click Sync to GitHub (Automatic)</div>
+                <div class="sync-card-desc">
+                    Enter your GitHub Personal Access Token once. Whenever you click <strong>Sync to GitHub</strong>, it will automatically commit <code>memories.json</code> straight to your repository! GitHub Pages updates automatically within 1-2 minutes.
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <input type="password" id="inputGitHubPat" class="vault-input" placeholder="Paste GitHub Token (PAT)..." style="flex: 1; min-width: 220px;">
+                    <button class="btn-action" style="padding: 10px 20px;" onclick="handleGitHubPush()">
+                        <span>Push to GitHub 🚀</span>
+                    </button>
+                </div>
+                <div id="syncStatusMsg" class="sync-status-msg"></div>
+            </div>
+
+            <!-- Option 2: Download File -->
+            <div class="sync-card-option">
+                <div class="sync-card-title">📥 Option 2: Download & Git Push (Manual)</div>
+                <div class="sync-card-desc">
+                    Download the updated <code>memories.json</code> file with all your folders and photos, place it in your project folder, and push to GitHub.
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn-action btn-secondary" onclick="handleDownloadMemoriesJson()">
+                        <span>📥 Download memories.json</span>
+                    </button>
+                    <button class="btn-action btn-secondary" onclick="handleCopyMemoriesJson()">
+                        <span>📋 Copy JSON</span>
+                    </button>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-top: 15px;">
+                <button class="btn-action btn-secondary" onclick="closeSyncModal()">Close</button>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="shared-nav.js"></script>
+    <script src="sync-storage.js"></script>
     <script>
-        // Data structure separating "our first date" (old images) and "2-06"
-        const FOLDER_DATA = {
-            'first-date': {
-                title: "our first date 💕",
-                date: "First Date",
-                description: "first time i saw the love of my life",
-                items: [
-                    { type: 'image', src: 'WhatsApp Image 2026-06-01 at 17.10.21.jpeg', caption: 'Every moment with you is precious 💕', date: 'Our First Date' },
-                    { type: 'image', src: 'WhatsApp Image 2026-06-01 at 17.10.22.jpeg', caption: 'You make my world brighter 🌟', date: 'Our First Date' },
-                    { type: 'image', src: 'WhatsApp Image 2026-06-01 at 17.10.24.jpeg', caption: 'The most beautiful girl inside and out 💕', date: 'Our First Date' },
-                    { type: 'video', src: 'WhatsApp Video 2026-06-01 at 17.10.19.mp4', caption: 'De7ketek de a7la 7aga shoftaha fe 7ayaty 😊💕', date: 'Our First Date' },
-                    { type: 'video', src: 'WhatsApp Video 2026-06-01 at 17.10.23.mp4', caption: 'Eltaree2a el shoft feeha elfar7a fe 3eneeky 💖', date: 'Our First Date' }
-                ]
-            },
-            '2-06': {
-                title: "2-06 🌸",
-                date: "2-06",
-                description: "first birthday with u habibty ba7ebek",
-                items: [
-                    { type: 'image', src: '2-06.jpeg', caption: 'Memory from 2-06 💕', date: '2-06' },
-                    { type: 'image', src: '2-06 (2).jpeg', caption: 'Memory from 2-06 (2) ✨', date: '2-06' },
-                    { type: 'image', src: '2-6.jpeg', caption: 'Memory from 2-6 💖', date: '2-06' }
-                ]
-            },
-            '24-06': {
-                title: "24-06 ✨",
-                date: "24-06",
-                description: "first time eating your food teslam 2edeky",
-                items: [
-                    { type: 'image', src: '24-06.jpeg', caption: 'Memory from 24-06 💕', date: '24-06' },
-                    { type: 'image', src: '24-06 (2).jpeg', caption: 'Memory from 24-06 (2) 🌟', date: '24-06' },
-                    { type: 'image', src: '24-06 (3).jpeg', caption: 'Memory from 24-06 (3) 💖', date: '24-06' },
-                    { type: 'image', src: '24-06 (4).jpeg', caption: 'Memory from 24-06 (4) 🌸', date: '24-06' },
-                    { type: 'video', src: '24-06.mp4', caption: 'Video memory from 24-06 🎥💕', date: '24-06' }
-                ]
-            },
-            '15-7': {
-                title: "15-7 ☀️",
-                date: "15-7",
-                description: "wont forget that hard time that you were the reason to overcome it",
-                items: [
-                    { type: 'image', src: '15-7.jpeg', caption: 'Memory from 15-7 💕', date: '15-7' },
-                    { type: 'image', src: '15-7 (2).jpeg', caption: 'Memory from 15-7 (2) 💖', date: '15-7' },
-                    { type: 'video', src: '15-7.mp4', caption: 'Video memory from 15-7 🎥✨', date: '15-7' }
-                ]
-            },
-            '29-9': {
-                title: "29-9 🍂",
-                date: "29-9",
-                description: "ba7eb elyoum da awy ba7eb el lip combo kont far7an awy wna batswar m3aky kol 7aga kanet 7lwa fl youm da w teslam 2edeky 3l akl",
-                items: [
-                    { type: 'image', src: '29-9.jpeg', caption: 'Memory from 29-9 💕', date: '29-9' },
-                    { type: 'image', src: '29-9 (2).jpeg', caption: 'Memory from 29-9 (2) 💖', date: '29-9' },
-                    { type: 'image', src: '29-9 (3).jpeg', caption: 'Memory from 29-9 (3) ✨', date: '29-9' },
-                    { type: 'image', src: '29-9 (4).jpeg', caption: 'Memory from 29-9 (4) 🌸', date: '29-9' },
-                    { type: 'image', src: '29-9 (5).jpeg', caption: 'Memory from 29-9 (5) 👑', date: '29-9' },
-                    { type: 'image', src: '29-9 (6).jpeg', caption: 'Memory from 29-9 (6) 💗', date: '29-9' },
-                    { type: 'image', src: '29-9 (7).jpeg', caption: 'Memory from 29-9 (7) 💕', date: '29-9' },
-                    { type: 'video', src: '29-9.mp4', caption: 'Video memory from 29-9 🎥💖', date: '29-9' }
-                ]
+        // Fallback default folders
+        const DEFAULT_MEMORIES = {
+            folders: {
+                'first-date': {
+                    id: 'first-date',
+                    title: "our first date 💕",
+                    date: "First Date",
+                    emoji: "📁💕",
+                    description: "first time i saw the love of my life",
+                    items: [
+                        { type: 'image', src: 'WhatsApp Image 2026-06-01 at 17.10.21.jpeg', caption: 'Every moment with you is precious 💕', date: 'Our First Date' },
+                        { type: 'image', src: 'WhatsApp Image 2026-06-01 at 17.10.22.jpeg', caption: 'You make my world brighter 🌟', date: 'Our First Date' },
+                        { type: 'image', src: 'WhatsApp Image 2026-06-01 at 17.10.24.jpeg', caption: 'The most beautiful girl inside and out 💕', date: 'Our First Date' },
+                        { type: 'video', src: 'WhatsApp Video 2026-06-01 at 17.10.19.mp4', caption: 'De7ketek de a7la 7aga shoftaha fe 7ayaty 😊💕', date: 'Our First Date' },
+                        { type: 'video', src: 'WhatsApp Video 2026-06-01 at 17.10.23.mp4', caption: 'Eltaree2a el shoft feeha elfar7a fe 3eneeky 💖', date: 'Our First Date' }
+                    ]
+                },
+                '2-06': {
+                    id: '2-06',
+                    title: "2-06 🌸",
+                    date: "2-06",
+                    emoji: "📁🌸",
+                    description: "first birthday with u habibty ba7ebek",
+                    items: [
+                        { type: 'image', src: '2-06.jpeg', caption: 'Memory from 2-06 💕', date: '2-06' },
+                        { type: 'image', src: '2-06 (2).jpeg', caption: 'Memory from 2-06 (2) ✨', date: '2-06' },
+                        { type: 'image', src: '2-6.jpeg', caption: 'Memory from 2-6 💖', date: '2-06' }
+                    ]
+                },
+                '24-06': {
+                    id: '24-06',
+                    title: "24-06 ✨",
+                    date: "24-06",
+                    emoji: "📁✨",
+                    description: "first time eating your food teslam 2edeky",
+                    items: [
+                        { type: 'image', src: '24-06.jpeg', caption: 'Memory from 24-06 💕', date: '24-06' },
+                        { type: 'image', src: '24-06 (2).jpeg', caption: 'Memory from 24-06 (2) 🌟', date: '24-06' },
+                        { type: 'image', src: '24-06 (3).jpeg', caption: 'Memory from 24-06 (3) 💖', date: '24-06' },
+                        { type: 'image', src: '24-06 (4).jpeg', caption: 'Memory from 24-06 (4) 🌸', date: '24-06' },
+                        { type: 'video', src: '24-06.mp4', caption: 'Video memory from 24-06 🎥💕', date: '24-06' }
+                    ]
+                },
+                '15-7': {
+                    id: '15-7',
+                    title: "15-7 ☀️",
+                    date: "15-7",
+                    emoji: "📁☀️",
+                    description: "wont forget that hard time that you were the reason to overcome it",
+                    items: [
+                        { type: 'image', src: '15-7.jpeg', caption: 'Memory from 15-7 💕', date: '15-7' },
+                        { type: 'image', src: '15-7 (2).jpeg', caption: 'Memory from 15-7 (2) 💖', date: '15-7' },
+                        { type: 'video', src: '15-7.mp4', caption: 'Video memory from 15-7 🎥✨', date: '15-7' }
+                    ]
+                },
+                '29-9': {
+                    id: '29-9',
+                    title: "29-9 🍂",
+                    date: "29-9",
+                    emoji: "📁🍂",
+                    description: "ba7eb elyoum da awy ba7eb el lip combo kont far7an awy wna batswar m3aky kol 7aga kanet 7lwa fl youm da w teslam 2edeky 3l akl",
+                    items: [
+                        { type: 'image', src: '29-9.jpeg', caption: 'Memory from 29-9 💕', date: '29-9' },
+                        { type: 'image', src: '29-9 (2).jpeg', caption: 'Memory from 29-9 (2) 💖', date: '29-9' },
+                        { type: 'image', src: '29-9 (3).jpeg', caption: 'Memory from 29-9 (3) ✨', date: '29-9' },
+                        { type: 'image', src: '29-9 (4).jpeg', caption: 'Memory from 29-9 (4) 🌸', date: '29-9' },
+                        { type: 'image', src: '29-9 (5).jpeg', caption: 'Memory from 29-9 (5) 👑', date: '29-9' },
+                        { type: 'image', src: '29-9 (6).jpeg', caption: 'Memory from 29-9 (6) 💗', date: '29-9' },
+                        { type: 'image', src: '29-9 (7).jpeg', caption: 'Memory from 29-9 (7) 💕', date: '29-9' },
+                        { type: 'video', src: '29-9.mp4', caption: 'Video memory from 29-9 🎥💖', date: '29-9' }
+                    ]
+                }
             }
         };
 
-        let currentActiveFolder = null;
+        let appData = { folders: {} };
+        let currentActiveFolderKey = null;
         let currentActiveItems = [];
         let currentLightboxIndex = 0;
+        let stagedModalItems = [];
 
+        // Initialize Page
+        document.addEventListener('DOMContentLoaded', async () => {
+            appData = await RanoodSync.loadMemories(DEFAULT_MEMORIES);
+            renderFolders();
+
+            // Populate PAT input if saved
+            const savedPat = RanoodSync.getGitHubPat();
+            if (savedPat) {
+                document.getElementById('inputGitHubPat').value = savedPat;
+            }
+
+            // Setup Drag & Drop
+            const dropzone = document.getElementById('dropzone');
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dropzone.classList.add('dragover');
+                }, false);
+            });
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dropzone.classList.remove('dragover');
+                }, false);
+            });
+            dropzone.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                if (files && files.length > 0) {
+                    processFiles(files);
+                }
+            });
+        });
+
+        // Render Folders Overview Grid
+        function renderFolders() {
+            const grid = document.getElementById('foldersOverview');
+            grid.innerHTML = '';
+
+            const folderKeys = Object.keys(appData.folders);
+            if (folderKeys.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(255,255,255,0.8); border-radius: 28px;">
+                        <h3 style="color: #d81b60; font-size: 1.5rem; margin-bottom: 8px;">No folders yet 💕</h3>
+                        <p style="color: #7a4d64;">Click "Add New Memory Folder" above to create your first memory folder!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            folderKeys.forEach(key => {
+                const f = appData.folders[key];
+                const itemsCount = f.items ? f.items.length : 0;
+                const photoCount = (f.items || []).filter(i => i.type !== 'video').length;
+                const videoCount = (f.items || []).filter(i => i.type === 'video').length;
+
+                let countStr = `${photoCount} Photos`;
+                if (videoCount > 0) {
+                    countStr += ` • ${videoCount} Videos`;
+                }
+
+                // First preview item
+                const previewItem = f.items && f.items.length > 0 ? f.items[0] : null;
+                let previewHtml = '';
+                if (previewItem) {
+                    if (previewItem.type === 'video') {
+                        previewHtml = `<video muted preload="metadata" src="${encodeURI(previewItem.src)}"></video>`;
+                    } else {
+                        previewHtml = `<img src="${encodeURI(previewItem.src)}" alt="${f.title}" loading="lazy">`;
+                    }
+                } else {
+                    previewHtml = `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem;color:#ff69b4;">📸</div>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'folder-card';
+                card.innerHTML = `
+                    <div class="folder-top-bar">
+                        <span class="folder-icon" onclick="openFolder('${key}')">${f.emoji || '📁💕'}</span>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="date-badge">📅 ${f.date || 'Memory'}</span>
+                            <button class="folder-edit-btn" title="Edit this folder" onclick="event.stopPropagation(); openEditFolderModal('${key}')">✏️</button>
+                            <button class="folder-delete-btn" title="Delete whole folder" onclick="event.stopPropagation(); deleteFolderById('${key}')">🗑️</button>
+                        </div>
+                    </div>
+                    <h2 class="folder-title" onclick="openFolder('${key}')">${f.title}</h2>
+                    <p class="folder-desc">${f.description || ''}</p>
+                    <div class="folder-preview-stack" onclick="openFolder('${key}')">
+                        ${previewHtml}
+                        <div class="folder-preview-overlay">
+                            <span>📸 ${countStr}</span>
+                            <span>Open ➔</span>
+                        </div>
+                    </div>
+                    <div class="card-button-row">
+                        <button class="open-folder-btn" onclick="openFolder('${key}')">
+                            <span>Open Folder</span> 📂
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Open Active Folder View
         function openFolder(folderKey) {
-            const data = FOLDER_DATA[folderKey];
+            const data = appData.folders[folderKey];
             if (!data) return;
 
-            currentActiveFolder = folderKey;
-            currentActiveItems = data.items;
+            currentActiveFolderKey = folderKey;
+            currentActiveItems = data.items || [];
 
             document.getElementById('foldersOverview').style.display = 'none';
             const activeView = document.getElementById('activeFolderView');
             activeView.style.display = 'block';
 
-            document.getElementById('folderDisplayTitle').innerText = data.title;
-            document.getElementById('folderDisplayDesc').innerText = `"${data.description}"`;
-            document.getElementById('folderDisplayDate').innerText = `📅 ${data.date}`;
-            document.getElementById('folderDisplayCount').innerText = `📸 ${data.items.length} Items`;
+            document.getElementById('folderTitleText').innerText = data.title;
+            document.getElementById('folderDisplayDesc').innerText = data.description ? `"${data.description}"` : '';
+            document.getElementById('folderDisplayDate').innerText = `📅 ${data.date || 'Memory'}`;
+            document.getElementById('folderDisplayCount').innerText = `📸 ${currentActiveItems.length} Items`;
 
+            renderMediaGrid();
+            window.scrollTo({ top: 250, behavior: 'smooth' });
+        }
+
+        function closeFolder() {
+            document.getElementById('activeFolderView').style.display = 'none';
+            document.getElementById('foldersOverview').style.display = 'grid';
+            currentActiveFolderKey = null;
+            currentActiveItems = [];
+        }
+
+        function renderMediaGrid() {
             const grid = document.getElementById('mediaGrid');
             grid.innerHTML = '';
 
-            data.items.forEach((item, index) => {
+            if (currentActiveItems.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 50px 20px; background: #ffffff; border-radius: 24px; border: 2px dashed #ffb6c1;">
+                        <h3 style="color: #d81b60; font-size: 1.4rem; margin-bottom: 8px;">No photos or videos yet 💕</h3>
+                        <p style="color: #7a4d64; margin-bottom: 16px;">Click "Modify Folder" above to upload photos and videos to this folder!</p>
+                        <button class="btn-action" onclick="editCurrentFolder()">➕ Add Photos Now</button>
+                    </div>
+                `;
+                return;
+            }
+
+            currentActiveItems.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'media-card';
                 card.onclick = () => openLightbox(index);
@@ -853,7 +1475,7 @@
                     mediaHtml = `
                         <div class="media-thumb-wrap">
                             <span class="media-type-badge">📸 Photo</span>
-                            <img src="${encodeURI(item.src)}" alt="${item.caption}" loading="lazy">
+                            <img src="${encodeURI(item.src)}" alt="${item.caption || ''}" loading="lazy">
                         </div>
                     `;
                 }
@@ -861,24 +1483,15 @@
                 card.innerHTML = `
                     ${mediaHtml}
                     <div class="media-caption">
-                        <span>${item.caption}</span>
-                        <span class="date">${item.date}</span>
+                        <span>${item.caption || 'Precious moment 💕'}</span>
+                        <span class="date">${item.date || ''}</span>
                     </div>
                 `;
-
                 grid.appendChild(card);
             });
-
-            window.scrollTo({ top: 300, behavior: 'smooth' });
         }
 
-        function closeFolder() {
-            document.getElementById('activeFolderView').style.display = 'none';
-            document.getElementById('foldersOverview').style.display = 'grid';
-            currentActiveFolder = null;
-            currentActiveItems = [];
-        }
-
+        // Lightbox Functions
         function openLightbox(index) {
             currentLightboxIndex = index;
             const modal = document.getElementById('lightboxModal');
@@ -908,11 +1521,11 @@
                 `;
             } else {
                 holder.innerHTML = `
-                    <img src="${encodeURI(item.src)}" alt="${item.caption}">
+                    <img src="${encodeURI(item.src)}" alt="${item.caption || ''}">
                 `;
             }
 
-            caption.innerHTML = `<strong>${item.caption}</strong> • <em>${item.date}</em> (${currentLightboxIndex + 1}/${currentActiveItems.length})`;
+            caption.innerHTML = `<strong>${item.caption || ''}</strong> • <em>${item.date || ''}</em> (${currentLightboxIndex + 1}/${currentActiveItems.length})`;
         }
 
         function navigateLightbox(dir) {
@@ -939,6 +1552,334 @@
                 if (e.key === 'ArrowRight') navigateLightbox(1);
             }
         });
+
+        // ==============================================
+        // ADD / EDIT FOLDER MODAL LOGIC
+        // ==============================================
+        function openAddFolderModal() {
+            document.getElementById('folderModalHeading').innerText = '✨ Add Memory Folder';
+            document.getElementById('folderEditId').value = '';
+            document.getElementById('inputFolderTitle').value = '';
+            document.getElementById('inputFolderDate').value = '';
+            document.getElementById('inputFolderEmoji').value = '📁💕';
+            document.getElementById('inputFolderDesc').value = '';
+            document.getElementById('btnDeleteFolder').style.display = 'none';
+
+            stagedModalItems = [];
+            renderModalPreviews();
+
+            document.getElementById('folderModalBackdrop').classList.add('active');
+        }
+
+        function openEditFolderModal(key) {
+            const folder = appData.folders[key];
+            if (!folder) return;
+
+            document.getElementById('folderModalHeading').innerText = '✏️ Modify Memory Folder';
+            document.getElementById('folderEditId').value = key;
+            document.getElementById('inputFolderTitle').value = folder.title || '';
+            document.getElementById('inputFolderDate').value = folder.date || '';
+            document.getElementById('inputFolderEmoji').value = folder.emoji || '📁💕';
+            document.getElementById('inputFolderDesc').value = folder.description || '';
+            document.getElementById('btnDeleteFolder').style.display = 'inline-block';
+
+            // Clone items into staged
+            stagedModalItems = JSON.parse(JSON.stringify(folder.items || []));
+            renderModalPreviews();
+
+            document.getElementById('folderModalBackdrop').classList.add('active');
+        }
+
+        function editCurrentFolder() {
+            if (currentActiveFolderKey) {
+                openEditFolderModal(currentActiveFolderKey);
+            }
+        }
+
+        function closeFolderModal() {
+            document.getElementById('folderModalBackdrop').classList.remove('active');
+            stagedModalItems = [];
+        }
+
+        function selectEmoji(emoji) {
+            document.getElementById('inputFolderEmoji').value = emoji;
+        }
+
+        // Process File uploads
+        async function handleFilesSelected(event) {
+            const files = event.target.files;
+            if (files && files.length > 0) {
+                await processFiles(files);
+                event.target.value = '';
+            }
+        }
+
+        async function processFiles(fileList) {
+            const dropzoneText = document.querySelector('.vault-dropzone-text');
+            const originalText = dropzoneText.innerText;
+            dropzoneText.innerText = 'Optimizing & Adding Photos... ⏳';
+
+            const defaultDate = document.getElementById('inputFolderDate').value || 'Memory';
+
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+                const isVideo = file.type.startsWith('video/');
+
+                try {
+                    let mediaSrc = '';
+                    if (isVideo) {
+                        mediaSrc = await RanoodSync.readMediaFile(file);
+                    } else {
+                        // Compress image to ~1600px width/height and 85% JPEG quality
+                        mediaSrc = await RanoodSync.compressImage(file, 1600, 0.85);
+                    }
+
+                    stagedModalItems.push({
+                        type: isVideo ? 'video' : 'image',
+                        src: mediaSrc,
+                        caption: file.name.replace(/\.[^/.]+$/, ""),
+                        date: defaultDate
+                    });
+                } catch (err) {
+                    console.error('Failed to process file:', file.name, err);
+                }
+            }
+
+            dropzoneText.innerText = originalText;
+            renderModalPreviews();
+        }
+
+        function addMediaByUrl() {
+            const urlInput = document.getElementById('inputMediaUrl');
+            const url = urlInput.value.trim();
+            if (!url) return;
+
+            const isVideo = url.endsWith('.mp4') || url.endsWith('.webm');
+            const defaultDate = document.getElementById('inputFolderDate').value || 'Memory';
+
+            stagedModalItems.push({
+                type: isVideo ? 'video' : 'image',
+                src: url,
+                caption: 'Memory Link 💕',
+                date: defaultDate
+            });
+
+            urlInput.value = '';
+            renderModalPreviews();
+        }
+
+        function removeStagedItem(index) {
+            stagedModalItems.splice(index, 1);
+            renderModalPreviews();
+        }
+
+        function renderModalPreviews() {
+            const container = document.getElementById('modalItemsPreview');
+            container.innerHTML = '';
+
+            if (stagedModalItems.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #a8728a; font-size: 0.85rem; padding: 10px;">No media attached yet</div>';
+                return;
+            }
+
+            stagedModalItems.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = 'upload-preview-card';
+
+                let elemHtml = '';
+                if (item.type === 'video') {
+                    elemHtml = `<video src="${item.src}" muted></video>`;
+                } else {
+                    elemHtml = `<img src="${item.src}" alt="">`;
+                }
+
+                card.innerHTML = `
+                    ${elemHtml}
+                    <button type="button" class="preview-delete-btn" onclick="removeStagedItem(${idx})" title="Remove item">✕</button>
+                    <span class="preview-tag">${item.type === 'video' ? '🎥 Video' : '📸 Photo'}</span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Save Folder Form Submit
+        function handleFolderFormSubmit(e) {
+            e.preventDefault();
+
+            const editId = document.getElementById('folderEditId').value.trim();
+            const title = document.getElementById('inputFolderTitle').value.trim();
+            const date = document.getElementById('inputFolderDate').value.trim();
+            const emoji = document.getElementById('inputFolderEmoji').value.trim() || '📁💕';
+            const desc = document.getElementById('inputFolderDesc').value.trim();
+
+            const key = editId || ('folder-' + Date.now());
+
+            appData.folders[key] = {
+                id: key,
+                title: title,
+                date: date,
+                emoji: emoji,
+                description: desc,
+                items: stagedModalItems
+            };
+
+            RanoodSync.saveMemoriesLocally(appData);
+            closeFolderModal();
+            renderFolders();
+
+            // If we modified the currently open folder, refresh it
+            if (currentActiveFolderKey === key) {
+                openFolder(key);
+            }
+
+            // Quick romantic notice and background auto-sync
+            showToast('Saved! Syncing... 💕');
+            RanoodSync.autoSyncMemories(appData).then(ok => {
+                if (ok) showToast('Saved & Synced 💕');
+            });
+        }
+
+        // Delete Folder
+        function deleteFolderById(key) {
+            const folder = appData.folders[key];
+            if (!folder) return;
+
+            const folderName = folder.title || 'this folder';
+            if (confirm(`Are you sure you want to delete the whole memory folder "${folderName}" and all its photos? 💕`)) {
+                delete appData.folders[key];
+                RanoodSync.saveMemoriesLocally(appData);
+                if (currentActiveFolderKey === key) {
+                    closeFolder();
+                }
+                renderFolders();
+                showToast(`Folder deleted! Syncing... 💕`);
+                RanoodSync.autoSyncMemories(appData).then(ok => {
+                    if (ok) showToast('Saved & Synced 💕');
+                });
+            }
+        }
+
+        function deleteCurrentFolderDirectly() {
+            if (currentActiveFolderKey) {
+                deleteFolderById(currentActiveFolderKey);
+            }
+        }
+
+        function deleteCurrentFolder() {
+            const editId = document.getElementById('folderEditId').value.trim();
+            if (!editId) return;
+
+            deleteFolderById(editId);
+            closeFolderModal();
+        }
+
+        // 1-Click Direct Save (automatic in background)
+        async function handleDirectSave() {
+            const btn = document.getElementById('btnDirectSave');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<span>Saving... ⏳</span>';
+            btn.disabled = true;
+
+            try {
+                await RanoodSync.pushToGitHub('memories.json', appData, 'Update memories vault via web portal 💕');
+                showToast('Saved & Synced 💕');
+            } catch (err) {
+                console.error(err);
+                showToast('Saved locally 💕');
+            } finally {
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+            }
+        }
+
+        // ==============================================
+        // GITHUB SYNC MODAL LOGIC
+        // ==============================================
+        function openSyncModal() {
+            document.getElementById('syncStatusMsg').className = 'sync-status-msg';
+            document.getElementById('syncStatusMsg').style.display = 'none';
+            document.getElementById('syncModalBackdrop').classList.add('active');
+        }
+
+        function closeSyncModal() {
+            document.getElementById('syncModalBackdrop').classList.remove('active');
+        }
+
+        async function handleGitHubPush() {
+            const patInput = document.getElementById('inputGitHubPat');
+            const pat = patInput.value.trim();
+            const statusMsg = document.getElementById('syncStatusMsg');
+
+            if (!pat) {
+                statusMsg.className = 'sync-status-msg error';
+                statusMsg.innerText = 'Please enter your GitHub Personal Access Token first.';
+                statusMsg.style.display = 'block';
+                return;
+            }
+
+            RanoodSync.setGitHubPat(pat);
+            statusMsg.className = 'sync-status-msg';
+            statusMsg.style.display = 'block';
+            statusMsg.style.background = '#e3f2fd';
+            statusMsg.style.color = '#1565c0';
+            statusMsg.style.borderColor = '#90caf9';
+            statusMsg.innerText = 'Connecting to GitHub repository and pushing memories.json... ⏳';
+
+            try {
+                await RanoodSync.pushToGitHub('memories.json', appData, 'Update memories vault via web portal 💕');
+                statusMsg.className = 'sync-status-msg success';
+                statusMsg.innerText = '✅ Successfully committed to GitHub! GitHub Pages will refresh with the updates in ~1-2 minutes 💕';
+            } catch (err) {
+                statusMsg.className = 'sync-status-msg error';
+                statusMsg.innerText = '❌ GitHub Error: ' + err.message;
+            }
+        }
+
+        function handleDownloadMemoriesJson() {
+            RanoodSync.downloadJson('memories.json', appData);
+            showToast('Downloaded memories.json! 📁');
+        }
+
+        async function handleCopyMemoriesJson() {
+            try {
+                await RanoodSync.copyToClipboard(appData);
+                showToast('Copied memories JSON to clipboard! 📋');
+            } catch (e) {
+                alert('Could not copy automatically. You can download the file instead!');
+            }
+        }
+
+        function handleModalBackdrop(e, backdropId) {
+            if (e.target.id === backdropId) {
+                document.getElementById(backdropId).classList.remove('active');
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.innerText = msg;
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: linear-gradient(135deg, #ff1493, #ff69b4);
+                color: white;
+                padding: 14px 26px;
+                border-radius: 50px;
+                font-family: 'Outfit', sans-serif;
+                font-size: 1rem;
+                font-weight: 700;
+                box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+                z-index: 999999;
+                animation: modalFade 0.3s ease;
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.4s ease';
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
     </script>
 </body>
 </html>

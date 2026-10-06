@@ -1,0 +1,18 @@
+{
+  "songs": [
+    {
+      "id": "song-adele-love-song",
+      "title": "Love Song 💕",
+      "artist": "by Adele",
+      "url": "https://www.youtube.com/watch?v=0wPhbmeNSOs&list=RD0wPhbmeNSOs&start_radio=1",
+      "emoji": "💖"
+    },
+    {
+      "id": "song-tommy-gun-fenak",
+      "title": "Fenak 💫",
+      "artist": "by Tommy Gun",
+      "url": "https://www.youtube.com/watch?v=2yhUm7-cpWc&list=RD2yhUm7-cpWc&start_radio=1",
+      "emoji": "🌸"
+    }
+  ]
+}
